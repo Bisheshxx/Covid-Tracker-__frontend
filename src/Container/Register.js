@@ -61,7 +61,7 @@ function Register() {
                         </div>
 
                         <div>
-                            <input type="text" value={signup.password} onChange={handleInput} name="password" autoComplete="off"></input>
+                            <input type="password" value={signup.password} onChange={handleInput} name="password" autoComplete="off"></input>
                         </div>
 
 
@@ -69,7 +69,7 @@ function Register() {
                             <b><label className='register__label'>Confirm Password</label></b>
                         </div>
                         <div>
-                            <input type="text" value={signup.conpassword} onChange={handleInput} name="conpassword" autoComplete="off"></input>
+                            <input type="password" value={signup.conpassword} onChange={handleInput} name="conpassword" autoComplete="off"></input>
                         </div>
 
                     </div>
