@@ -1,6 +1,7 @@
  {
   "name": "covidtracker",
-  "version": "0.1.0",
+  "homepage": "https://Bisheshxx.github.io",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -8,6 +9,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "gh-pages": "^3.2.3",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",
@@ -18,6 +20,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:staging": "env-cmd -f .env.staging npm run build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
