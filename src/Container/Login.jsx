@@ -42,7 +42,7 @@ function Login() {
     }
 
     return (
-        <div className='register__bg'>
+        <div className='register__bg' data-test="login">
             <div className='register__container'>
                 <form>
                     <div className='login__form'>
@@ -50,7 +50,7 @@ function Login() {
                             <b><label className='login__label'>Email</label></b>
                         </div>
                         <div>
-                            <input type="text" value={login.email} onChange={handleInput} name="email" autoComplete="off"></input>
+                            <input type="text" value={login.email} onChange={handleInput} name="email" autoComplete="off" data-test="email"></input>
                         </div>
 
 
@@ -58,7 +58,7 @@ function Login() {
                             <b><label className='login__label'>Password</label></b>
                         </div>
                         <div>
-                            <input type="text" value={login.password} onChange={handleInput} name="password" autoComplete="off"></input>
+                            <input type="text" value={login.password} onChange={handleInput} name="password" autoComplete="off" data-test="password"></input>
                         </div>
                     </div>
 
@@ -66,11 +66,15 @@ function Login() {
                     <Container>
                         <Row style={{ paddingTop: '20px', display:'flex', justifyContent:'center'}}>
                             <Col xs={24} md={6} align='middle' style={{ paddingLeft:'100px'}} >
-                                <button onClick={loginBtn} style={{ width:'80px', borderRadius:'5px' }} >Login</button>
+                                <button onClick={loginBtn} style={{ width:'80px', borderRadius:'5px' }} data-test="login-btn">Login</button>
 
                             </Col>
                             <Col xs={24} md={6} align='middle'  style={{paddingRight:'100px'}}>
+
+                                <button onClick={signupbtn} style={{ width:'80px', borderRadius:'5px'}} data-test="btn-signup">Sign-UP</button>
+
                                 <button href='register' style={{ width:'80px', borderRadius:'5px'}}>Sign-UP</button>
+
                             </Col>
                         </Row>
                         </Container>
