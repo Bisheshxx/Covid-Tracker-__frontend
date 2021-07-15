@@ -5,6 +5,7 @@ import Login from './Container/Login.jsx'
 import './App.css';
 import {BrowserRouter,Switch, Route} from 'react-router-dom'
 import Footer from './Container/Footer/Footer';
+import EventPage from './Container/EventPage';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         </Route>
         <Route path='/login'>
           <Login/>
+        </Route>
+        <Route path='/createevent'>
+          <EventPage/>
         </Route>
       </switch>
       <Footer/>

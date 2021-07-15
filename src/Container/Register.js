@@ -2,7 +2,7 @@ import React, { useEffect, useState, signupbtn } from 'react'
 import './styleregister.css'
 import { Component, state, submitUser, changeHandler } from 'react'
 import { Link } from 'react-router-dom'
-import {Col} from 'react-bootstrap'
+import { Col } from 'react-bootstrap'
 import axios from 'axios'
 
 function Register() {
@@ -10,7 +10,8 @@ function Register() {
         fullname: "",
         email: "",
         password: "",
-        conpassword: ""
+        conpassword: "",
+        usertype:""
     })
     const handleInput = (e) => {
         const name = e.target.name;
@@ -23,7 +24,8 @@ function Register() {
         const userdata = {
             fullname: signup.fullname,
             email: signup.email,
-            password: signup.password
+            password: signup.password,
+            usertype: signup.usertype
         }
         console.log(userdata)
         axios.post('http://localhost:90/insert/user', userdata)
@@ -71,11 +73,17 @@ function Register() {
                         <div>
                             <input type="password" value={signup.conpassword} onChange={handleInput} name="conpassword" autoComplete="off"></input>
                         </div>
+                        <div className='container'>
+                            <select className='custom-select' value={signup.usertype}>
+                                <option value="User">User</option>
+                                <option value="Event Manager">Event Manager</option>
+                            </select>
+                        </div>
 
                     </div>
-                
-                        <button onClick={signupbtn} style={{ marginLeft:"40%", borderRadius:'5px' }}>Sign-UP</button>
-                    
+
+                    <button onClick={signupbtn} style={{ marginLeft: "40%", borderRadius: '5px' }}>Sign-UP</button>
+
 
 
 

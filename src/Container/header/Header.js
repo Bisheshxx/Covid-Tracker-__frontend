@@ -15,7 +15,7 @@ class Header extends Component {
                         <div class="row">
                             <div class="col">
                                 <nav class="navbar navbar-light row navbar-expand-md" role="navigation">
-                                    <a class="navbar-brand" href="index.html"><img src="https://assets.turbologo.com/blog/en/2019/11/19084834/gaming-logo-cover.jpg" alt="logo" /></a>
+                                    <a class="navbar-brand" href="index.html"><img src="https://scontent.fktm8-1.fna.fbcdn.net/v/t39.30808-6/216791868_5766928153379044_7873052256259565595_n.png?_nc_cat=110&_nc_rgb565=1&ccb=1-3&_nc_sid=730e14&_nc_ohc=LbE0HTDMAtUAX_zcqv1&_nc_ht=scontent.fktm8-1.fna&oh=8e529abcff89dea8d2d37a65bfdecc61&oe=60F4627A" alt="logo" /></a>
                                     <button id="nav-toggle" type="button" class="ml-auto ui-navbar-toggler navbar-toggler border-0 p-0" data-toggle="collapse" data-target=".navbar-29362" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
@@ -55,7 +55,7 @@ class Header extends Component {
                         <div class="row">
                             <div class="col">
                                 <nav class="navbar navbar-light row navbar-expand-md" role="navigation">
-                                    <a class="navbar-brand" href="index.html"><img src="https://assets.turbologo.com/blog/en/2019/11/19084834/gaming-logo-cover.jpg" alt="logo" /></a>
+                                    <a class="navbar-brand" href="index.html"><img src="https://scontent.fktm8-1.fna.fbcdn.net/v/t39.30808-6/216791868_5766928153379044_7873052256259565595_n.png?_nc_cat=110&_nc_rgb565=1&ccb=1-3&_nc_sid=730e14&_nc_ohc=LbE0HTDMAtUAX_zcqv1&_nc_ht=scontent.fktm8-1.fna&oh=8e529abcff89dea8d2d37a65bfdecc61&oe=60F4627A" alt="logo" /></a>
                                     <button id="nav-toggle" type="button" class="ml-auto ui-navbar-toggler navbar-toggler border-0 p-0" data-toggle="collapse" data-target=".navbar-29362" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
