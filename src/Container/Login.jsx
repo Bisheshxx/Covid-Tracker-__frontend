@@ -3,6 +3,7 @@ import { useEffect, useState, loginBtn, signupbtn } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import axios from 'axios'
 import './stylelogin.css'
+import { Link } from 'react-router-dom'
 
 function Login() {
     const token= localStorage.getItem("token");
@@ -70,11 +71,10 @@ function Login() {
 
                             </Col>
                             <Col xs={24} md={6} align='middle'  style={{paddingRight:'100px'}}>
-
-                                <button onClick={signupbtn} style={{ width:'80px', borderRadius:'5px'}} data-test="btn-signup">Sign-UP</button>
-
-                                <button href='register' style={{ width:'80px', borderRadius:'5px'}}>Sign-UP</button>
-
+                                <Link to='/register'>
+                                <button style={{ width:'80px', borderRadius:'5px'}} data-test="btn-signup">Sign-UP</button>
+                                </Link>
+                                
                             </Col>
                         </Row>
                         </Container>
