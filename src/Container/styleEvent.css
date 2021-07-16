@@ -1,4 +1,4 @@
-.login__bg {
+.event__bg {
     padding-top: 100px;
     padding-bottom: 100px;
     background-image: url('../home\ page\ bg@1.5x.png');
@@ -8,11 +8,11 @@
     flex-direction: column;
     align-items: center;
 }
-.login__form{
+.event__form{
     margin-left: 25%;
     margin-right: 25%;
 }
-.login__container {
+.event__container {
     display: block;
     font-size: 15px;
     border-radius: 25px;
@@ -22,26 +22,7 @@
     background-color: rgb(230, 230, 230);
     margin-left: auto;
     margin-right: auto; 
-    color: blue;
+    color: #2b96d5;
     padding-top: 40px;
     padding-bottom: 40px;
-}
-
-label {
-    text-align: left;
-}
-
-input[type=text] {
-    width: 100%;
-    height: 37px;
-    border-radius: 5px;
-    border: none;
-    border: 2px solid #2b96d5;
-}
-
-.login__element {
-    display: block;
-    padding-top: 30px;
-    margin-left: 150px;
-    margin-right: 150px;
 }
