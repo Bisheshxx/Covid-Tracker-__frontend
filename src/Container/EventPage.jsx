@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React from 'react'
 import { useEffect, useState, loginBtn, signupbtn } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
@@ -22,11 +23,19 @@ function EventPage() {
         e.preventDefault();
         const eventData = new FormData()
         eventData.append('title', event.title)
-        eventData.append('venue', event.venue)
-        eventData.append('desc', event.desc)
+        eventData.append('venu', event.venue)
+        eventData.append('description', event.desc)
         eventData.append('date', event.date)
         eventData.append('image', event.image)
-        console.log(eventData)
+        console.log(eventData);
+        axios.post('http://localhost:90/event/insert',eventData,token)
+        .then((response)=>{
+            console.log(response)
+            alert(response.data.message)
+        })
+        .catch((err)=>{
+            console.log(err.response)
+        })
         
         
     }
