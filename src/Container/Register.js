@@ -73,12 +73,12 @@ function Register() {
                         <div>
                             <input type="password" value={signup.conpassword} onChange={handleInput} name="conpassword" autoComplete="off"></input>
                         </div>
-                        <div className='container'>
+                        
                             <select className='custom-select' value={signup.usertype}>
                                 <option value="User">User</option>
                                 <option value="Event Manager">Event Manager</option>
                             </select>
-                        </div>
+                        
 
                     </div>
 

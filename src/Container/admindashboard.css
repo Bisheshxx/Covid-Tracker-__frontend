@@ -1,0 +1,30 @@
+.container__dashboard{
+    display: flex;
+}
+.sidebarWrapper{
+    flex:1;
+    background-color: antiquewhite;
+    height: 100vh;
+    padding: 5px;
+}
+.dataviewWrapper{
+    flex:4
+}
+.sidebarList{
+    list-style: none;
+}
+.sidebarTitle{
+    font-size: 25px;
+    color: rgb(119, 117, 115);
+    font-weight: bold;
+}
+.sidebarListItem{
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+.sidebarListItem.active, .sidebarListItem:hover{
+    background-color: thistle;
+}

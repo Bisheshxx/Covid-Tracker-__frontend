@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React from 'react'
-import { useEffect, useState, loginBtn, signupbtn } from 'react'
+import { useEffect, useState, fileHandler } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
@@ -18,6 +18,11 @@ function EventPage() {
         const name = e.target.name;
         const value = e.target.value;
         setevent({ ...event, [name]: value })
+    }
+    const fileHandler = (e) =>{
+        this.setState({
+            pimage : e.target.files[0]
+        })
     }
     const submitBtn = (e) =>{
         e.preventDefault();
@@ -88,7 +93,7 @@ function EventPage() {
                                     <Row style={{ paddingTop: '20px', display: 'flex', justifyContent: 'center' }}>
                                         <Col>
                                             Click here to Upload An Image<br></br>
-                                            <input type='file' value={event.image} onChange={handleInput} name='image'></input>
+                                            <input type='file' value={event.image} onClick={fileHandler} name='image'></input>
                                         </Col>
                                     </Row>
                                     <Row style={{ paddingTop: '20px', display: 'flex', justifyContent: 'center' }}>

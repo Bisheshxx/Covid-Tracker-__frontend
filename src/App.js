@@ -6,6 +6,7 @@ import './App.css';
 import {BrowserRouter,Switch, Route} from 'react-router-dom'
 import Footer from './Container/Footer/Footer';
 import EventPage from './Container/EventPage';
+import AdminDashboard from './Container/AdminDashboard';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
         </Route>
         <Route path='/createevent'>
           <EventPage/>
+        </Route>
+        <Route path='/adminpannel'>
+          <AdminDashboard/>
         </Route>
       </switch>
       <Footer/>
