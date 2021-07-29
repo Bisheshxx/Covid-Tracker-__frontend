@@ -7,6 +7,8 @@ import {BrowserRouter,Switch, Route} from 'react-router-dom'
 import Footer from './Container/Footer/Footer';
 import EventPage from './Container/EventPage';
 import AdminDashboard from './Container/AdminDashboard';
+import ResetPassword from './Container/ResetPassword';
+import Body from './Container/Body';
 
 function App() {
   return (
@@ -14,9 +16,13 @@ function App() {
     <div className="App">
       <Header></Header>
       <switch>
+      <Route path='/'>
+          <Body/>
+        </Route>
         <Route path='/register'>
           <Register></Register>
         </Route>
+        
         <Route path='/login'>
           <Login/>
         </Route>
@@ -25,6 +31,9 @@ function App() {
         </Route>
         <Route path='/adminpannel'>
           <AdminDashboard/>
+        </Route>
+        <Route path='/resetpassword'>
+          <ResetPassword/>
         </Route>
       </switch>
       <Footer/>

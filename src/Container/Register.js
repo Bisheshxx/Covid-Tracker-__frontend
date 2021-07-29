@@ -1,8 +1,6 @@
 import React, { useEffect, useState, signupbtn } from 'react'
 import './styleregister.css'
 import { Component, state, submitUser, changeHandler } from 'react'
-import { Link } from 'react-router-dom'
-import { Col } from 'react-bootstrap'
 import axios from 'axios'
 
 function Register() {
@@ -82,7 +80,7 @@ function Register() {
 
                     </div>
 
-                    <button onClick={signupbtn} style={{ marginLeft: "40%", borderRadius: '5px' }}>Sign-UP</button>
+                    <button onClick={signupbtn} style={{marginTop:'30px', marginLeft: "40%", borderRadius: '5px' }}>Sign-UP</button>
 
 
 

@@ -1,4 +1,4 @@
-import { Form,Table, Modal,Button } from 'react-bootstrap'
+import { Form, Table, Modal, Button } from 'react-bootstrap'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { deleteEvent } from 'react'
@@ -10,26 +10,26 @@ function EventList() {
 
     const [show, setShow] = useState(false);
 
-    const [data,setData]=useState({
-        _id:"",
-        title:"",
-        description:"",
-        venue:"",
-    date:"",
+    const [data, setData] = useState({
+        _id: "",
+        title: "",
+        description: "",
+        venue: "",
+        date: "",
     });
 
-    const {_id,title,description,venue,date}=data;
+    const { _id, title, description, venue, date } = data;
 
     const handleClose = () => setShow(false);
 
     const handleShow = (item) => {
         setShow(true)
         setData(item);
-        };
+    };
 
-        const handleInputChange=(e)=>{
-            setData({...data,[e.target.name]:e.target.value});
-        }
+    const handleInputChange = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value });
+    }
 
     useEffect(() => {
         axios.get('http://localhost:90/event/showall', {
@@ -46,15 +46,15 @@ function EventList() {
             })
     }, [])
 
-    const handleEventUpdate=()=>{
-        axios.put(`http://localhost:90/event/update/`,data)
-        .then((res)=>{
-        alert(res.data && res.date.message);
-        })
-        .catch((err)=>{
-            alert("Update failed!");
-            console.log(err);
-        })
+    const handleEventUpdate = () => {
+        axios.put(`http://localhost:90/event/update/`, data)
+            .then((res) => {
+                alert(res.data && res.data.message);
+            })
+            .catch((err) => {
+                alert("Update failed!");
+                console.log(err);
+            })
     }
 
     const deleteEvent = (event_id) => {
@@ -74,7 +74,7 @@ function EventList() {
             )
     }
 
-console.log("data",data);
+    console.log("data", data);
 
     return (
         <div className='productview'>
@@ -99,7 +99,7 @@ console.log("data",data);
                             <td>{item.venue}</td>
                             <td>{item.date}</td>
                             <td>{item.date}</td>
-                            <td><button style={{ width: "100px" }} size="sm" data-toggle="modal" onClick={()=>handleShow(item)} >Update</button>
+                            <td><button style={{ width: "100px" }} size="sm" data-toggle="modal" onClick={() => handleShow(item)} >Update</button>
                                 <button style={{ width: "100px" }} size="sm" onClick={() => { deleteEvent(item._id) }}>Delete</button></td>
                             <td></td>
                         </tr>
@@ -113,37 +113,28 @@ console.log("data",data);
                     <Modal.Title>Event Details</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <Form onSubmit={handleEventUpdate}>
+                    <Form onSubmit={handleEventUpdate}>
 
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Title</Form.Label>
-    <Form.Control type="text" name="title" value={title} onChange={handleInputChange}/>
-  </Form.Group>
-
-  <Button variant="primary" type="submit">
-    Submit
-  </Button>
-  </Form>
-                    <form>
-                        <label>Title</label>
-                        <input type='text'/>
-                        <label>Description</label>
-                        <input type='text'/>
-                        <label>Venue</label>
-                        <input type='text'/>
-                        <label>Date</label>
-                        <input type="datetime-local"/>
-
-                    </form>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Title</Form.Label>
+                            <Form.Control type="text" name="title" value={title} onChange={handleInputChange} />
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control type="text" name="description" value={description} onChange={handleInputChange} />
+                            <Form.Label>Venue</Form.Label>
+                            <Form.Control type="text" name="venue" value={venue} onChange={handleInputChange} />
+                            <Form.Label>Date</Form.Label>
+                            <Form.Control type="text" name="date" value={date} onChange={handleInputChange} />
+                        </Form.Group>
+                        <Modal.Footer>
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                        </Modal.Footer>
+                    </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
             </Modal>
         </div>
     )

@@ -1,12 +1,13 @@
 import React from 'react'
 import { useEffect, useState, loginBtn, signupbtn } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col,Form, Table, Modal, Button } from 'react-bootstrap'
 import axios from 'axios'
 import './stylelogin.css'
 import { Link } from 'react-router-dom'
 
 function Login() {
     const token= localStorage.getItem("token");
+    
     const [login, setlogin] = useState({
         email: "",
         password: "",
@@ -57,12 +58,14 @@ function Login() {
 
                         <div>
                             <b><label className='login__label'>Password</label></b>
+                            <Link to='/resetpassword' style={{marginLeft:'25%'}}>Forgot Password?</Link>
                         </div>
                         <div>
                             <input type="text" value={login.password} onChange={handleInput} name="password" autoComplete="off" data-test="password"></input>
                         </div>
                         
                     </div>
+                    
 
 
                     <Container>
@@ -79,10 +82,11 @@ function Login() {
                             </Col>
                         </Row>
                         </Container>
-
-                </form>
+                        
+                </form> 
 
             </div>
+            
         </div>
     )
 }

@@ -15,13 +15,12 @@ function EventPage() {
         image:""
     })
     const handleInput = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
+        const{name, value}= e.target
         setevent({ ...event, [name]: value })
     }
     const fileHandler = (e) =>{
-        this.setState({
-            pimage : e.target.files[0]
+        setevent({
+            image : e.target.files[0]
         })
     }
     const submitBtn = (e) =>{
@@ -32,8 +31,8 @@ function EventPage() {
         eventData.append('description', event.desc)
         eventData.append('date', event.date)
         eventData.append('image', event.image)
-        console.log(eventData);
-        axios.post('http://localhost:90/event/insert',eventData,token)
+        console.log(event.image);
+        axios.post('http://localhost:90/event/insert',eventData)
         .then((response)=>{
             console.log(response)
             alert(response.data.message)
