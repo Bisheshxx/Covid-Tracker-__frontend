@@ -99,8 +99,8 @@ function EventList() {
                             <td>{item.venue}</td>
                             <td>{item.date}</td>
                             <td>{item.date}</td>
-                            <td><button style={{ width: "100px" }} size="sm" data-toggle="modal" onClick={() => handleShow(item)} >Update</button>
-                                <button style={{ width: "100px" }} size="sm" onClick={() => { deleteEvent(item._id) }}>Delete</button></td>
+                            <td><button style={{ width: "100px", borderRadius:'9px' }} size="sm" data-toggle="modal" onClick={() => handleShow(item)} >Update</button>
+                                <button style={{ width: "100px", borderRadius:'9px' }} size="sm" onClick={() => { deleteEvent(item._id) }}>Delete</button></td>
                             <td></td>
                         </tr>
                     </tbody>

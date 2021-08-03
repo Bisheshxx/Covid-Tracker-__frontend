@@ -55,6 +55,7 @@ input[type=password] {
 }
 
 button {
+    
     border-radius: 3px;
     margin-top: 30px;
     text-align: center;
@@ -64,4 +65,11 @@ button {
     width: 20%;
     background-color: #2b96d5;
     color: white;   
+}
+.custom-select{
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    border: 2px solid #2b96d5;
 }

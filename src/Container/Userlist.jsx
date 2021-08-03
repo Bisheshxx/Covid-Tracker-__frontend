@@ -94,7 +94,7 @@ function Userlist() {
             </Table>
             <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Event Details</Modal.Title>
+                    <Modal.Title>User Details</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleEventUpdate}>

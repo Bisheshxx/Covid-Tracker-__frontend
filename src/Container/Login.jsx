@@ -4,6 +4,7 @@ import { Container, Row, Col,Form, Table, Modal, Button } from 'react-bootstrap'
 import axios from 'axios'
 import './stylelogin.css'
 import { Link } from 'react-router-dom'
+import { validate } from '@babel/types'
 
 function Login() {
     const token= localStorage.getItem("token");
@@ -11,7 +12,10 @@ function Login() {
     const [login, setlogin] = useState({
         email: "",
         password: "",
-        loginCheck:false
+    })
+    const[errors,setErrors]=useState({
+        chkEmail:"",
+        chkPassword:""
     })
     const handleInput = (e) => {
         const name = e.target.name;
@@ -20,11 +24,11 @@ function Login() {
     }
     const loginBtn = (e) => {
         e.preventDefault();
-        const userdata = {
-            email: login.email,
-            password: login.password
-        }
-        axios.post('http://localhost:90/account/login', userdata)
+
+        if(!login.email.includes("@")){
+            setErrors({...errors,chkEmail:"Invalid email!"});
+        }else{
+            axios.post('http://localhost:90/account/login', login)
             .then((response) => {                
                 var token = localStorage.setItem('token', response.data.token)
                 if(token !== null){
@@ -41,6 +45,8 @@ function Login() {
                 alert("Invalid Credential!")
                 console.log(err.response)
             })
+        }
+       
     }
 
     return (
@@ -52,7 +58,10 @@ function Login() {
                             <b><label className='login__label'>Email</label></b>
                         </div>
                         <div>
-                            <input type="text" value={login.email} onChange={handleInput} name="email" autoComplete="off" data-test="email"></input>
+                            <input type="text" value={login.email} onChange={handleInput} name="email" autoComplete="off" data-test="email"/>
+                            <p style={{fontSize:'10px',color:'red'}}>
+                            {errors && errors.chkEmail ? errors.chkEmail:null}
+                            </p>
                         </div>
 
 
@@ -90,5 +99,4 @@ function Login() {
         </div>
     )
 }
-
 export default Login

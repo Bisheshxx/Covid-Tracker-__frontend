@@ -6,7 +6,7 @@ function Footer() {
             <div class="container bloc-lg">
                 <div class="row">
                     <div class="col-md-3 col-sm-6">
-                        <img src="img/lazyload-ph.png" data-src="img/Asset%2011@1.5x.png" class="img-fluid img-style float-lg-none lazyload" alt="Asset%2011@1.5x" /><a href="index.html" class="a-btn a-block footer-link">Covid traker is an independent firm supported by Softwarica College that tracks the covid related cases for Nepal</a>
+                        <a href="index.html" class="a-btn a-block footer-link">Covid traker is an independent firm supported by Softwarica College that tracks the covid related cases for Nepal</a>
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <h4 class="mg-md text-sm-left text-center tc-white">

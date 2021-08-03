@@ -14,9 +14,9 @@ function AdminDashboard() {
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Row>
                 <Col sm={3}>
-                    <Nav variant="pills" className="flex-column">
+                    <Nav style={{textAlign:'center'}} variant="pills" className="flex-column">
                         <Nav.Item>
-                            <Nav.Link eventKey="first">User</Nav.Link>
+                            <Nav.Link centered eventKey="first">User</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link eventKey="second">Events</Nav.Link>
