@@ -37,7 +37,7 @@ export const sortData = (data) => {
 
 export const prettyPrintStat = (stat) =>
   stat ? `+${numeral(stat).format("0.0a")}` : "+0";
-
+//circle nptation on the map
 export const showDataOnMap = (data, casesType = "cases") =>
   data.map((country) => (
     <Circle
@@ -46,7 +46,7 @@ export const showDataOnMap = (data, casesType = "cases") =>
       fillColor={casesTypeColors[casesType].hex}
       fillOpacity={0.4}
       radius={
-        Math.sqrt(country[casesType]) * casesTypeColors[casesType].multiplier
+        Math.sqrt(country[casesType]/10) * casesTypeColors[casesType].multiplier
       }
     >
       <Popup>
