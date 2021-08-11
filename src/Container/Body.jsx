@@ -24,6 +24,7 @@ import {
     const [casesType, setCasesType] = useState("cases");
     const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
     const [mapZoom, setMapZoom] = useState(3);
+    
   
     useEffect(() => {
       fetch("https://disease.sh/v3/covid-19/all")
@@ -55,6 +56,7 @@ import {
     console.log(casesType);
   
     const onCountryChange = async (e) => {
+      
       const countryCode = e.target.value;
   
       const url =
@@ -66,8 +68,12 @@ import {
         .then((data) => {
           setInputCountry(countryCode);
           setCountryInfo(data);
-          setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-          setMapZoom(4);
+      
+          countryCode === "worldwide"
+          ? setMapCenter([34.80746, -40.4796])
+          : setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+            setMapZoom(4);
+   
         });
     };
   
@@ -98,6 +104,7 @@ import {
               active={casesType === "cases"}
               cases={prettyPrintStat(countryInfo.todayCases)}
               total={numeral(countryInfo.cases).format("0.0a")}
+           
             />
             <InfoBox
               onClick={(e) => setCasesType("recovered")}
@@ -105,6 +112,7 @@ import {
               active={casesType === "recovered"}
               cases={prettyPrintStat(countryInfo.todayRecovered)}
               total={numeral(countryInfo.recovered).format("0.0a")}
+          
             />
             <InfoBox
               onClick={(e) => setCasesType("deaths")}
@@ -113,6 +121,7 @@ import {
               active={casesType === "deaths"}
               cases={prettyPrintStat(countryInfo.todayDeaths)}
               total={numeral(countryInfo.deaths).format("0.0a")}
+             
             />
           </div>
           <Map
