@@ -9,6 +9,8 @@ import EventPage from './Container/EventPage';
 import AdminDashboard from './Container/AdminDashboard';
 import ResetPassword from './Container/ResetPassword';
 import Body from './Container/Body';
+import Hospital from './Container/Hospital';
+import ViewEventPage from './Container/ViewEventPage';
 
 function App() {
   return (
@@ -16,7 +18,7 @@ function App() {
     <div className="App">
       <Header></Header>
       <switch>
-      <Route path='/'>
+      <Route path='/' exact>
           <Body/>
         </Route>
         <Route path='/register'>
@@ -34,6 +36,12 @@ function App() {
         </Route>
         <Route path='/resetpassword'>
           <ResetPassword/>
+        </Route>
+        <Route path='/hospital'>
+          <Hospital/>
+        </Route>
+        <Route path='/Events'>
+          <ViewEventPage/>
         </Route>
       </switch>
       <Footer/>

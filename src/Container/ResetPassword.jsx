@@ -12,7 +12,7 @@ function ResetPassword() {
         <div className='reset__background'>
             <div className="reset__password">
                 <a class="navbar-brand" href="index.html"><img
-                    src="https://scontent.fktm8-1.fna.fbcdn.net/v/t39.30808-6/216791868_5766928153379044_7873052256259565595_n.png?_nc_cat=110&ccb=1-3&_nc_sid=730e14&_nc_ohc=ceSNQFl1dMoAX-R-vh5&_nc_ht=scontent.fktm8-1.fna&oh=4ad44b95fdc570e3aee8ab455289be13&oe=61062EBA" alt="logo" /></a>
+                    src="https://scontent.fktm8-1.fna.fbcdn.net/v/t39.30808-6/216791868_5766928153379044_7873052256259565595_n.png?_nc_cat=110&ccb=1-4&_nc_sid=730e14&_nc_ohc=4Tg60pfiLBwAX8Z3tD8&_nc_ht=scontent.fktm8-1.fna&oh=077b2c5292ded1daf862f4584fa13085&oe=6119F53A" alt="logo" /></a>
                 <Form>
                     <Form.Label htmlFor="inlineFormInput" visuallyHidden>
                     Enter your user account's verified email address and we will send you a password reset link.

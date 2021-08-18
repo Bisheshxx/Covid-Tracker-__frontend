@@ -14,6 +14,8 @@ import {
   import Map from "./Map";
   import './body.css';
   import "leaflet/dist/leaflet.css";
+import Hospital from "./Hospital";
+import Tryhospital from "./tryhospital";
   
   const Body = () => {
     const [country, setInputCountry] = useState("worldwide");
@@ -24,6 +26,7 @@ import {
     const [casesType, setCasesType] = useState("cases");
     const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
     const [mapZoom, setMapZoom] = useState(3);
+    const [hospital, setHospital] = useState([])
     
   
     useEffect(() => {
@@ -51,6 +54,16 @@ import {
       };
   
       getCountriesData();
+    }, []);
+
+    
+    useEffect(() => {
+        fetch("https://corona.askbhunte.com/api/v1/hospitals")
+            .then((response) => response.json())
+            .then((data) => {
+                setHospital(data.data);
+                console.log(data.data)
+            });
     }, []);
   
     console.log(casesType);
@@ -141,7 +154,11 @@ import {
             </div>
           </CardContent>
         </Card>
+      <div>
+            <Tryhospital hospital={hospital}/>
       </div>
+      </div>
+      
        
     )
                 
