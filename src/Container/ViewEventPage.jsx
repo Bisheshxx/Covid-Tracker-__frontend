@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Row } from 'react-bootstrap';
 import './ViewEventPage.css'
 
 function ViewEventPage() {
@@ -40,11 +40,12 @@ function ViewEventPage() {
                 <p>Following are the ongoing events related to COVID-19 happening in Nepal</p>
             </div>
             <div className="ViewEventPage__body">
+            <Row xs={1} md={3} className="g-4">
                 {event.map((item) => (
                     <div className='ViewEventPage__Card'>
                         <Card style={{ width: '18rem' }}>
                             <Card.Body>
-                                {item.image}
+                                {/* {item.image} */}
                                 <Card.Title>{item.title}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">Venue: {item.venue}   </Card.Subtitle>
                                 <Card.Subtitle>
@@ -52,7 +53,7 @@ function ViewEventPage() {
                                 </Card.Subtitle>
                                 <br />
                                 <Card.Text>
-                                    {item.date} 
+                                    {item.description} 
                                 </Card.Text>
 
                                 <Card.Text>
@@ -66,10 +67,10 @@ function ViewEventPage() {
                         </Card>
                     </div>
                 ))}
+                </Row>
             </div>
 
         </div>
     )
 }
-
 export default ViewEventPage

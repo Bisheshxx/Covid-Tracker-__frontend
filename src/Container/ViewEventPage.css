@@ -17,9 +17,14 @@
     color: white;
 }
 .ViewEventPage__Card{
+    /* width: 500px; */
     display: flex;
     align-items: center;
 }
 .ViewEventPage__body{
     display: flex;
+    flex-direction: row;
+    padding-left: auto;
+    padding-right: auto;
+    justify-content: center;
 }
