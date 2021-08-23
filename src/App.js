@@ -10,6 +10,7 @@ import AdminDashboard from './Container/AdminDashboard';
 import ResetPassword from './Container/ResetPassword';
 import Body from './Container/Body';
 import Hospital from './Container/Hospital';
+import Faq from './Container/Faq';
 import ViewEventPage from './Container/ViewEventPage';
 
 function App() {
@@ -39,6 +40,9 @@ function App() {
         </Route>
         <Route path='/hospital'>
           <Hospital/>
+        </Route>
+        <Route path='/faq'>
+          <Faq/>
         </Route>
         <Route path='/Events'>
           <ViewEventPage/>

@@ -40,11 +40,11 @@ function ViewEventPage() {
                 <p>Following are the ongoing events related to COVID-19 happening in Nepal</p>
             </div>
             <div className="ViewEventPage__body">
-            <Row xs={1} md={3} className="g-4">
+            <Row xs={1} md={3} className="g-4" style={{marginTop:"1in",marginBottom:"1in"}}>
                 {event.map((item) => (
-                    <div className='ViewEventPage__Card'>
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Body>
+                    <div className='ViewEventPage__Card' >
+                        <Card style={{ width: '10in',height:"3in"}}>
+                            <Card.Body style={{width:"3.3in"}}>
                                 {/* {item.image} */}
                                 <Card.Title>{item.title}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">Venue: {item.venue}   </Card.Subtitle>
@@ -61,16 +61,17 @@ function ViewEventPage() {
                                 </Card.Text><Card.Text>
                                     Date:{item.date}
                                 </Card.Text>
-                                <Button variant="primary" style={{ width: "100px", height: '20px', fontSize: '8px', textAlign: 'center', borderRadius: '9px' }}>Going</Button>
-                                <Button variant="primary" style={{ width: "100px", height: '20px', fontSize: '8px', borderRadius: '9px' }}>Interested</Button>
+                                <button style={{background:"transparent",border:"solid #248acc 1.5px", color:"#248acc"}}>Interested</button><button>Going</button>
                             </Card.Body>
                         </Card>
                     </div>
                 ))}
                 </Row>
             </div>
-
+            
         </div>
+       
     )
 }
+
 export default ViewEventPage

@@ -1,0 +1,125 @@
+.inner-container{
+    height:17in;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    background-color: rgb(233, 233, 233);
+}
+
+.inner-content1{
+    height:17in;
+    width:12in;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.faq-box{
+height:3in;
+width:7in;
+text-align: center;
+}
+.faq-box p{
+    font-weight: 100;
+    font-family:'arial';
+    color:rgb(141, 141, 141);
+}
+
+.faq-box2{
+    text-align: center;
+    margin-top:.5in;
+    height:6in;
+    width:10in;
+}
+
+.faq-box3{
+    margin-top: 2in;
+}
+
+.boxes{
+    width:10in;
+    margin:.5in 0in;
+    height:7.5in;
+    display: flex;
+    flex-direction: row;
+   
+}
+
+.smallboxes{
+    
+    width: 5in;
+    height: 7in;
+    margin: 0 .3cm;
+    background: #fff;
+    
+    border-radius: 15px;
+    padding: 20px 20px;
+    transition: ease-in-out .3s;
+}
+
+.smallboxes:hover{
+    box-shadow:0px 5px 14px #b6b6b6;
+    transform: translateY(-1cm);
+}
+.smallboxes ul{
+    text-align: left;
+    list-style:inside;
+}
+
+.smallboxes ul li{
+    
+    margin-left:-.5cm;
+    font-size: 14px;
+}
+
+.smallboxes h4{
+    font-size:18px;
+    font-weight: bold; 
+    margin-top: 20px;
+}
+
+.smallboxes h5{
+    font-size: 14px;
+    font-weight: light; 
+    margin-bottom: 16px;
+}
+
+.smallboxes h3{
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.imagee{
+    height:1.5in;
+}
+.FAQQ{
+    position:relative;
+    height:4.1in;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow:0px 8px 14px #b6b6b6;
+    text-align: left;
+    overflow:hidden;
+}
+
+.FAQQcontent{
+   position: absolute;
+    top:.5cm;
+    z-index: 1;
+    margin-left:1cm;
+    width:3.5in;
+}
+
+.FAQQcontent p{
+font-size: 12px;
+}
+
+.nurse{
+    width:7in;
+    position:absolute;
+    right:-1cm;
+    z-index: 0;
+}
+
+

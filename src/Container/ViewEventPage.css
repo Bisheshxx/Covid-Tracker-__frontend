@@ -28,3 +28,14 @@
     padding-right: auto;
     justify-content: center;
 }
+button{
+    position:relative;
+    width:1.2in;
+    border:none;
+    height:1cm;
+    border-radius:20px;
+    margin-right:.5cm;
+    left:.4cm;
+    font-size: 14px;
+    font-weight: 500;
+}
