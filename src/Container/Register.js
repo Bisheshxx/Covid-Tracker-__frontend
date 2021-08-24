@@ -3,6 +3,7 @@ import './styleregister.css'
 import { Component, state, submitUser, changeHandler } from 'react'
 import axios from 'axios'
 import Login from './Login'
+import {Link} from "react-router-dom"
 
 function Register() {
     const [signup, setsignup] = useState({
@@ -10,7 +11,7 @@ function Register() {
         email: "",
         password: "",
         conpassword: "",
-        // usertype:""
+        usertype:""
     })
     const[errors,setErrors]=useState({
         chkFullname:"",
@@ -111,15 +112,15 @@ function Register() {
                         </div>
                         
                             <select className='custom-select' value={signup.usertype}>
-                                <option value="User">User</option>
+                                <option value="Visitor">Visitor</option>
                                 <option value="Event Manager">Event Manager</option>
                             </select>
                         
 
                     </div>
-
+                    <Link to="/login">
                     <button onClick={signupbtn} style={{marginTop:'100px', marginLeft: "40%", borderRadius: '5px' }}>Sign-UP</button>
-
+                    </Link>
 
 
 
