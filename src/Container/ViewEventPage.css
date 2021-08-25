@@ -47,6 +47,14 @@ button{
     font-weight: 500;
     
 }
+.fav{
+    color: red;
+    margin-right: 50px;
+    
+}
+.intrest{
+    color:rgb(36, 120, 199);
+}
 
 .donate{
     background-color: rgb(33, 179, 33);
