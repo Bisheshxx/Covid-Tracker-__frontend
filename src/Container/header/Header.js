@@ -2,8 +2,6 @@ import {logout, log, Component} from 'react'
 import './header.css'
 import logo from "./logo.jpg"
 
-
-
 class Header extends Component {
     logout = () => log(
         localStorage.removeItem('token'),

@@ -2,8 +2,6 @@ import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { Button, Card, Row } from 'react-bootstrap';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import AddCommentIcon from '@material-ui/icons/AddComment';
 import './ViewEventPage.css'
 
 function ViewEventPage() {
@@ -64,11 +62,7 @@ function ViewEventPage() {
                                 </Card.Text><Card.Text>
                                     Date:{item.date}
                                 </Card.Text>
-                                {/* <button style={{background:"transparent",border:"solid #248acc 1.5px", color:"#248acc"}}>Interested</button> */}
-                                <FavoriteIcon className="fav"/>
-                                <AddCommentIcon className="intrest"/>
-                                {/* <button>Going</button> */}
-                                {!token ? (<> 
+                                <button style={{background:"transparent",border:"solid #248acc 1.5px", color:"#248acc"}}>Interested</button><button>Going</button>   {!token ? (<> 
                 </>):(<> <button className='donate'>Donate</button> 
                 </>)}     
                              
