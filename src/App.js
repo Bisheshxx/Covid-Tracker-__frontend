@@ -12,6 +12,7 @@ import Body from './Container/Body';
 import Hospital from './Container/Hospital';
 import Faq from './Container/Faq';
 import ViewEventPage from './Container/ViewEventPage';
+import News from './Container/News';
 
 function App() {
   return (
@@ -25,7 +26,9 @@ function App() {
         <Route path='/register'>
           <Register></Register>
         </Route>
-        
+        <Route path='/News'>
+          <News/>
+        </Route>
         <Route path='/login'>
           <Login/>
         </Route>
