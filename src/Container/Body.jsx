@@ -115,9 +115,8 @@ const Body = () => {
 
   return (
     <div className="app">
-      <div className="app__left">
-        <div className="app__header">
-          <h1>COVID-19 Tracker</h1>
+     <div className="app__header">
+          <h1 style={{color:"white",fontFamily:"Arial",fontWeight:"bold"}}>COVID-19 Tracker</h1>
           <FormControl className="app__dropdown">
             <Select
               variant="outlined"
@@ -131,6 +130,23 @@ const Body = () => {
             </Select>
           </FormControl>
         </div>
+      <div className="app__left">
+        {/* <div className="app__header">
+          <h1>COVID-19 Tracker</h1>
+          <FormControl className="app__dropdown">
+            <Select
+              variant="outlined"
+              value={country}
+              onChange={onCountryChange}
+            >
+              <MenuItem value="worldwide">Worldwide</MenuItem>
+              {countries.map((country) => (
+                <MenuItem value={country.value}>{country.name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div> */}
+        <div className="left">
         <div className="app__stats">
           <InfoBox
             onClick={(e) => setCasesType("cases")}
@@ -159,13 +175,16 @@ const Body = () => {
 
           />
         </div>
-        <Map
+     
+        <Map className="map"
           countries={mapCountries}
           casesType={casesType}
           center={mapCenter}
           zoom={mapZoom}
         />
-      </div>
+       
+        </div>
+        <div className="right">
       <Card className="app__right">
         <CardContent>
           <div className="app__information">
@@ -176,17 +195,29 @@ const Body = () => {
           </div>
         </CardContent>
       </Card>
-      <div className='app__right' style={{background:"#fff", padding:"20px",borderRadius:'3px'}}>
-        <div><h3>Hospitals</h3></div>
+      
+      </div>
+</div>
+<div className="heading" style={{display:"flex"}}>
+<h1 style={{marginBottom:"1cm",color:"white",fontFamily:"Arial",fontWeight:"bold"}}>Hospitals for covid-19 patients</h1>
+<div className="flag" >
+      
+</div>
+</div>
+<div className='app__right' style={{background:"#fff", padding:"20px",borderRadius:'20px',display:'block',marginTop:"1cm"}}>
+        <div style={{paddingLeft:"20px"}}>
+        <h3 style={{fontFamily:"Arial",fontWeight:"bold"}}>Hospitals</h3>
+        </div>
         
-        <Tryhospital hospital={currentHospitals} />
-        <CustomPagination
+        <Tryhospital  hospital={currentHospitals}/>
+        <CustomPagination 
           postsPerPage={postsPerPage}
           totalPosts={hospital.length}
           paginate={paginate}
         />
         
       </div>
+     
     </div>
 
 

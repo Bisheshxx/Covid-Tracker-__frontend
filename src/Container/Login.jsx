@@ -67,10 +67,12 @@ function Login() {
 
                         <div>
                             <b><label className='login__label'>Password</label></b>
-                            <Link to='/resetpassword' style={{marginLeft:'25%'}}>Forgot Password?</Link>
+                            
+                          
                         </div>
                         <div>
-                            <input type="text" value={login.password} onChange={handleInput} name="password" autoComplete="off" data-test="password"></input>
+                            <input type="password" value={login.password} onChange={handleInput} name="password" autoComplete="off" data-test="password"></input>
+                            <Link to='/resetpassword' >Forgot Password?</Link>
                         </div>
                         
                     </div>

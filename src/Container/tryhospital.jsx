@@ -3,8 +3,8 @@ import { Table } from 'react-bootstrap'
 
 const Tryhospital=({hospital})=> {
     return (
-        <div >
-            <Table style={{fontSize:'15px'}}>
+        <div style={{padding:'20px', borderRadius:"20px"}} >
+            <Table style={{fontSize:'20px'}}>
                 <thead>
                     <tr>
                         <th>Hospital Name</th>
@@ -15,7 +15,7 @@ const Tryhospital=({hospital})=> {
                     </tr>
                 </thead>
              {hospital.map((item) => (
-                    <tbody style={{fontSize:'10px'}}>
+                    <tbody style={{fontSize:'15px'}}>
                         <tr>
                         <td>
                             {item.name}

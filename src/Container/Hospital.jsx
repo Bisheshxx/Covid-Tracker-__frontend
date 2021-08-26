@@ -13,11 +13,11 @@ function Hospital() {
             });
     }, []);
     return (
-        <div className='hospital'>
-            <Table style={{fontSize:'15px'}}>
+        <div className='hospital' style={{fontSize:'25px'}}>
+            <Table >
                 <thead>
-                    <tr>
-                        <th>Hospital Name</th>
+                    <tr >
+                        <th >Hospital Name</th>
                         <th>Contact</th>
                         <th>Bed</th>
                         <th>ventilators</th>
@@ -25,7 +25,7 @@ function Hospital() {
                     </tr>
                 </thead>
                 {hospital.map((item) => (
-                    <tbody style={{fontSize:'10px'}}>
+                    <tbody style={{fontSize:'30px'}}>
                         <tr>
                         <td>
                             {item.name}

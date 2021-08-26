@@ -10,7 +10,7 @@ export default function CustomPagination(props) {
 
   return (
     <div>
-    <nav>
+    <nav style={{display:"flex",justifyContent:"space-evenly"}}>
       <ul className="pagination">
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
