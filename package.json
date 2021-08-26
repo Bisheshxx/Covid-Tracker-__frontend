@@ -19,6 +19,7 @@
     "gh-pages": "^3.2.3",
     "install": "^0.13.0",
     "leaflet": "^1.6.0",
+    "moment": "^2.29.1",
     "npm": "^7.20.3",
     "ra-data-simple-rest": "^3.16.0",
     "react": "^17.0.2",
