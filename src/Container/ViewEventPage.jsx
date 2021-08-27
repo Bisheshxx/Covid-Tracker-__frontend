@@ -39,7 +39,7 @@ function ViewEventPage() {
         <div className="ViewEventPage">
             <div className="ViewEventPage__banner">
                 <h1><b>Events</b></h1>
-                <p>Following are the ongoing events related to COVID-19 happening in Nepal</p>
+                <p>Following are the ongoing events related to COVID-19 happening in Nepal yes sir</p>
             </div>
             <div className="ViewEventPage__body">
             <Row xs={1} md={3} className="g-4" style={{marginTop:"1in",marginBottom:"1in"}}>
