@@ -15,11 +15,13 @@ function EventPage() {
         image:""
     })
     const handleInput = (e) => {
-        const{name, value}= e.target
+        const {name, value}= e.target
         setevent({ ...event, [name]: value })
     }
     const fileHandler = (e) =>{
+        
         setevent({
+            ...event,
             image : e.target.files[0]
         })
     }
@@ -92,7 +94,7 @@ function EventPage() {
                                     <Row style={{ paddingTop: '20px', display: 'flex', justifyContent: 'center' }}>
                                         <Col>
                                             Click here to Upload An Image<br></br>
-                                            <input type='file' value={event.image} onClick={fileHandler} name='image'></input>
+                                            <input type='file'  onChange={(e)=>{fileHandler(e)}} name='image'></input>
                                         </Col>
                                     </Row>
                                     <Row style={{ paddingTop: '20px', display: 'flex', justifyContent: 'center' }}>
