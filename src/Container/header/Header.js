@@ -1,6 +1,6 @@
 import {logout, log, Component} from 'react'
 import './header.css'
-import logo from "./logo.jpg"
+import logo from "./logo.png"
 
 class Header extends Component {
     logout = () => log(
@@ -31,6 +31,9 @@ class Header extends Component {
                                             </li>
                                             <li class="nav-item">
                                                 <a href="/faq" class="nav-link">FAQ's</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/News" class="nav-link">News</a>
                                             </li>
                                         </ul>
                                     </div>

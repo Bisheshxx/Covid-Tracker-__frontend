@@ -18,28 +18,34 @@
     font-size: 15px;
     border-radius: 25px;
     margin-right: auto;
-    margin-left: 100px;
-    width: 29%;
+    margin-left: auto;
+    width: 400px;
     background-color: rgb(230, 230, 230);
     margin-left: auto;
     margin-right: auto; 
     color: #2b96d5;
     padding-top: 40px;
     padding-bottom: 40px;
+    height: 500px;
+}
+@media (max-width: 320px) {
+    .register__container{
+        width: 300px;
+    }
 }
 
 label {
     text-align: left;
 }
 
-input[type=text] {
+.register__input{
     width: 100%;
-    height: 50px;
+    height: 38px;
     border-radius: 5px;
     border: none;
     border: 2px solid #2b96d5;
 }
-input[type=password] {
+.register__pw {
     width: 100%;
     height: 38px;
     border-radius: 5px;
@@ -52,19 +58,6 @@ input[type=password] {
     padding-top: 30px;
     margin-left: 150px;
     margin-right: 150px;
-}
-
-button {
-    
-    border-radius: 3px;
-    margin-top: 30px;
-    text-align: center;
-    margin-right: 40%;
-    margin-left: 40%;
-    height: 50px;
-    width: 20%;
-    background-color: #2b96d5;
-    color: white;   
 }
 .custom-select{
     width: 100%;

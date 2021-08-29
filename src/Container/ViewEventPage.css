@@ -55,3 +55,24 @@ button{
     bottom: 13px;
 
 }
+@media(max-width:460px){
+    .ViewEventPage__banner{
+        height: 500px;
+        width: 100%;
+        background-image: url('../event\ page\ bg@1.5x.png') ;
+        background-size: auto;
+        background-repeat: no-repeat;
+    }
+    .ViewEventPage__banner>h1{
+        padding-top: 200px;
+        padding-left: 10%;
+        color: white;
+        font-size: 50px;
+    }
+    .ViewEventPage__banner>p{
+        width: 100%;
+        padding-left: 10%;
+        color: white;
+        font-size: 15px;
+    }
+}

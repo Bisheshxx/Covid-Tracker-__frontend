@@ -1,104 +1,67 @@
 * {
-    margin: 0;
-  }
+  margin: 0;
+}
+
+body {
+  background-color: #f5f6fa;
+}
+/* .app{
+  background-image: url('../home\ page\ bg@1.5x.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+} */
+
+
+.app_tracker{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #f5f6fa;
+  padding: 20px;
+  background-image: url('../home\ page\ bg@1.5x.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
   
-  body {
-    background-color: #f5f6fa;
-  }
-  
-  .app{
-    display: flex;
+
+.app__dropdown {
+  background-color: white;
+}
+
+.app__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.app__header > h1 {
+  color: #ffffff;
+  font-family: fantasy;
+  font-size: 2rem;
+}
+
+.app__stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.app__left {
+  flex: 0.9;
+}
+
+.app__information > h3 {
+  color: #6a5d5d;
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.app__information > h3:last-of-type {
+  margin-top: 1rem;
+}
+
+@media (max-width: 990px) {
+  .app {
     flex-direction: column;
-    justify-content: space-evenly;
-    background-color: #f5f6fa;
-    padding: 20px;
-    background-image: url('../home\ page\ bg@1.5x.png');
-    background-size: cover;
-    background-repeat: no-repeat;
   }
-
-  .left{
-    width:13in;
-  }
-
-  .map zoom {
-    width: 10in;
-   
-   
-  }
-
-  .map{
-    height: 5.55in;
-  }
-
-  .right{
-    width: 4in;
-    position: absolute;
-    right: 0;
-    margin-top: -.8in;
-  }
-
- 
-  
-  
-  .app__dropdown {
-    background-color: rgb(255, 255, 255);
-    position: relative;
-    right: 4.13in;
-    border-radius: 5px;
-  }
-  
-  .app__header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    justify-content: space-between;
-  }
-  
-  .app__header > h1 {
-    font-family: fantasy;
-    color: #000000;
-    font-size: 2rem;
-  }
-  
-  .app__stats {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .app__left {
-    display: flex;
-    position: relative;
-    margin-bottom: 2cm;
-  }
-  
-  .app__information > h3 {
-    color: #6a5d5d;
-    font-weight: 400;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .app__information > h3:last-of-type {
-    margin-top: 1rem;
-    height: 1.1in;
-  }
-
-  .flag{
-    width: 1.5in;
-    background-image: url(https://www.worldatlas.com/img/flag/np-flag.jpg);
-    background-size: cover;
-    margin-top: -.2cm;
-    margin-left: .5cm;
-   border-radius: 10px;
-
-  }
-
-
-  
-  @media (max-width: 990px) {
-    .app {
-      flex-direction: column;
-    }
-  }
-  
+}
