@@ -3,7 +3,7 @@ import './styleregister.css'
 import { Component, state, submitUser, changeHandler } from 'react'
 import axios from 'axios'
 import Login from './Login'
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 function Register() {
     const [signup, setsignup] = useState({
@@ -11,15 +11,15 @@ function Register() {
         email: "",
         password: "",
         conpassword: "",
-        usertype:""
+        usertype: ""
     })
-    const[errors,setErrors]=useState({
-        chkFullname:"",
-        chkEmail:"",
-        chkPassword:"",
-        chkConpassword:"",
-        chkUsertype:"",
-        chkPassword:""
+    const [errors, setErrors] = useState({
+        chkFullname: "",
+        chkEmail: "",
+        chkPassword: "",
+        chkConpassword: "",
+        chkUsertype: "",
+        chkPassword: ""
     })
     const handleInput = (e) => {
         const name = e.target.name;
@@ -28,22 +28,22 @@ function Register() {
 
     }
     const signupbtn = (e) => {
-        if(!signup.fullname){
-            setErrors({...errors,chkFullname:"This Field is required"})
+        if (!signup.fullname) {
+            setErrors({ ...errors, chkFullname: "This Field is required" })
         }
-        else if(!signup.email.trim()){
-            setErrors({...errors,chkEmail:"This Field is required"})
+        else if (!signup.email.trim()) {
+            setErrors({ ...errors, chkEmail: "This Field is required" })
         }
-        else if(!signup.email.trim()){
-            setErrors({...errors,chkPassword:"This Field is required"})
+        else if (!signup.email.trim()) {
+            setErrors({ ...errors, chkPassword: "This Field is required" })
         }
-        else if(!signup.email.trim()){
-            setErrors({...errors,chkConpassword:"This Field is required"})
+        else if (!signup.email.trim()) {
+            setErrors({ ...errors, chkConpassword: "This Field is required" })
         }
-        else if(signup.password !== signup.conpassword){
-            setErrors({...errors,chkConpassword:"Both need to be similar"})
+        else if (signup.password !== signup.conpassword) {
+            setErrors({ ...errors, chkConpassword: "Both need to be similar" })
         }
-        else{
+        else {
             const userdata = {
                 fullname: signup.fullname,
                 email: signup.email,
@@ -60,7 +60,7 @@ function Register() {
                     console.log(err.response)
                 })
         }
-        
+
     }
 
     return (
@@ -71,9 +71,9 @@ function Register() {
                     <div className='register__form'>
                         <b><label className='register__label'>Name</label></b>
                         <div>
-                            <input type="text" value={signup.fullname} onChange={handleInput} name="fullname" autoComplete="off"></input>
-                            <p style={{fontSize:'10px',color:'red'}}>
-                            {errors && errors.chkFullname ? errors.chkEmail:null}
+                            <input type="text" className='register__input' value={signup.fullname} onChange={handleInput} name="fullname" autoComplete="off"></input>
+                            <p style={{ fontSize: '10px', color: 'red' }}>
+                                {errors && errors.chkFullname ? errors.chkEmail : null}
                             </p>
                         </div>
 
@@ -82,9 +82,9 @@ function Register() {
                             <b><label className='register__label'>Email</label></b>
                         </div>
                         <div>
-                            <input type="text" value={signup.email} onChange={handleInput} name="email" autoComplete="off"></input>
-                            <p style={{fontSize:'10px',color:'red'}}>
-                            {errors && errors.chkEmail ? errors.chkEmail:null}
+                            <input className='register__input' type="text" value={signup.email} onChange={handleInput} name="email" autoComplete="off"></input>
+                            <p style={{ fontSize: '10px', color: 'red' }}>
+                                {errors && errors.chkEmail ? errors.chkEmail : null}
                             </p>
                         </div>
 
@@ -94,9 +94,9 @@ function Register() {
                         </div>
 
                         <div>
-                            <input type="password" value={signup.password} onChange={handleInput} name="password" autoComplete="off"></input>
-                            <p style={{fontSize:'10px',color:'red'}}>
-                            {errors && errors.chkPassword ? errors.chkEmail:null}
+                            <input className='register__pw' type="password" value={signup.password} onChange={handleInput} name="password" autoComplete="off"></input>
+                            <p style={{ fontSize: '10px', color: 'red' }}>
+                                {errors && errors.chkPassword ? errors.chkEmail : null}
                             </p>
                         </div>
 
@@ -105,22 +105,22 @@ function Register() {
                             <b><label className='register__label'>Confirm Password</label></b>
                         </div>
                         <div>
-                            <input type="password" value={signup.conpassword} onChange={handleInput} name="conpassword" autoComplete="off"></input>
-                            <p style={{fontSize:'10px',color:'red'}}>
-                            {errors && errors.chkConpassword ? errors.chkEmail:null}
+                            <input className='register__pw' type="password" value={signup.conpassword} onChange={handleInput} name="conpassword" autoComplete="off"></input>
+                            <p style={{ fontSize: '10px', color: 'red' }}>
+                                {errors && errors.chkConpassword ? errors.chkEmail : null}
                             </p>
                         </div>
-                        
-                            <select className='custom-select' value={signup.usertype}>
-                                <option value="Visitor">Visitor</option>
-                                <option value="Event Manager">Event Manager</option>
-                            </select>
-                        
+
+                        <select className='custom-select' value={signup.usertype}>
+                            <option value="Visitor">Visitor</option>
+                            <option value="Event Manager">Event Manager</option>
+                        </select>
+                        <Link to="/login">
+                            <button className='login__btn' onClick={signupbtn} style={{ marginTop: '10px', color: 'white', backgroundColor: '#2b96d5', marginRight: '20%', marginLeft: '20%' }}>Sign-UP</button>
+                        </Link>
 
                     </div>
-                    <Link to="/login">
-                    <button onClick={signupbtn} style={{marginTop:'100px', marginLeft: "40%", borderRadius: '5px' }}>Sign-UP</button>
-                    </Link>
+
 
 
 

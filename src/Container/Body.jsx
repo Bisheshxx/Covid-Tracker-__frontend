@@ -5,6 +5,7 @@ import {
   Select,
   Card,
   CardContent,
+  Container,
 } from "@material-ui/core";
 import InfoBox from "./InfoBox";
 import LineGraph from "./LineGraph";
@@ -15,8 +16,7 @@ import Map from "./Map";
 import './body.css';
 import "leaflet/dist/leaflet.css";
 import Hospital from "./Hospital";
-import Tryhospital from "./tryhospital";
-import CustomPagination from "./Pagination";
+import { Row, Pagination } from "antd";
 
 const Body = () => {
   const [country, setInputCountry] = useState("worldwide");
@@ -28,8 +28,6 @@ const Body = () => {
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
   const [mapZoom, setMapZoom] = useState(3);
   const [hospital, setHospital] = useState([])
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -92,12 +90,40 @@ const Body = () => {
       });
   };
   // Get current posts
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentHospitals = hospital.slice(indexOfFirstPost, indexOfLastPost);
+  // const indexOfLastHospital = currentPage * postsPerPage;
+  // const indexOfFirstPost = indexOfLastHospital - postsPerPage;
+  // const currentHospitals = hospital.slice(indexOfFirstPost, indexOfLastHospital);
 
   // Change page
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  // const paginate = pageNumber => setCurrentPage(pageNumber);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [paginatedData, setPaginatedData] = useState([]);
+
+  const pageSize = 12;
+
+  const handlePaginationChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  useEffect(() => {
+    let newArray;
+    let maxCountIndex = 11;
+
+    if (hospital && hospital.length > 0) {
+      // ((1-1)*12=0, 11*1+1=12)=(0,12)
+      newArray = hospital.slice(
+        (currentPage - 1) * pageSize,
+        maxCountIndex * currentPage + currentPage
+      );
+    }
+
+    setPaginatedData(newArray);
+
+    return () => {
+      // cleanup
+    };
+  }, [hospital, currentPage]);
 
   // const pageNumbers = [];
 
@@ -111,116 +137,94 @@ const Body = () => {
   //   setPageNumbers(total);
 
   // },[hospital,postsPerPage])
-  
+
 
   return (
     <div className="app">
-     <div className="app__header">
-          <h1 style={{color:"white",fontFamily:"Arial",fontWeight:"bold"}}>COVID-19 Tracker</h1>
-          <FormControl className="app__dropdown">
-            <Select
-              variant="outlined"
-              value={country}
-              onChange={onCountryChange}
-            >
-              <MenuItem value="worldwide">Worldwide</MenuItem>
-              {countries.map((country) => (
-                <MenuItem value={country.value}>{country.name}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
-      <div className="app__left">
-        {/* <div className="app__header">
-          <h1>COVID-19 Tracker</h1>
-          <FormControl className="app__dropdown">
-            <Select
-              variant="outlined"
-              value={country}
-              onChange={onCountryChange}
-            >
-              <MenuItem value="worldwide">Worldwide</MenuItem>
-              {countries.map((country) => (
-                <MenuItem value={country.value}>{country.name}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div> */}
-        <div className="left">
-        <div className="app__stats">
-          <InfoBox
-            onClick={(e) => setCasesType("cases")}
-            title="Coronavirus Cases"
-            isRed
-            active={casesType === "cases"}
-            cases={prettyPrintStat(countryInfo.todayCases)}
-            total={numeral(countryInfo.cases).format("0.0a")}
-
-          />
-          <InfoBox
-            onClick={(e) => setCasesType("recovered")}
-            title="Recovered"
-            active={casesType === "recovered"}
-            cases={prettyPrintStat(countryInfo.todayRecovered)}
-            total={numeral(countryInfo.recovered).format("0.0a")}
-
-          />
-          <InfoBox
-            onClick={(e) => setCasesType("deaths")}
-            title="Deaths"
-            isRed
-            active={casesType === "deaths"}
-            cases={prettyPrintStat(countryInfo.todayDeaths)}
-            total={numeral(countryInfo.deaths).format("0.0a")}
-
-          />
-        </div>
-     
-        <Map className="map"
-          countries={mapCountries}
-          casesType={casesType}
-          center={mapCenter}
-          zoom={mapZoom}
-        />
-       
-        </div>
-        <div className="right">
-      <Card className="app__right">
-        <CardContent>
-          <div className="app__information">
-            <h3>Live Cases by Country</h3>
-            <Table countries={tableData} />
-            <h3>Worldwide new {casesType}</h3>
-            <LineGraph casesType={casesType} />
+      <div className="app_tracker">
+        <div className="app__left">
+          <div className="app__header">
+            <h1>COVID-19 STATUS</h1>
+            <FormControl className="app__dropdown">
+              <Select
+                variant="outlined"
+                value={country}
+                onChange={onCountryChange}
+              >
+                <MenuItem value="worldwide">Worldwide</MenuItem>
+                {countries.map((country) => (
+                  <MenuItem value={country.value}>{country.name}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </div>
-        </CardContent>
-      </Card>
-      
-      </div>
-</div>
-<div className="heading" style={{display:"flex"}}>
-<h1 style={{marginBottom:"1cm",color:"white",fontFamily:"Arial",fontWeight:"bold"}}>Hospitals for covid-19 patients</h1>
-<div className="flag" >
-      
-</div>
-</div>
-<div className='app__right' style={{background:"#fff", padding:"20px",borderRadius:'20px',display:'block',marginTop:"1cm"}}>
-        <div style={{paddingLeft:"20px"}}>
-        <h3 style={{fontFamily:"Arial",fontWeight:"bold"}}>Hospitals</h3>
+          <div className="app__stats">
+            <InfoBox
+              onClick={(e) => setCasesType("cases")}
+              title="Coronavirus Cases"
+              isRed
+              active={casesType === "cases"}
+              cases={prettyPrintStat(countryInfo.todayCases)}
+              total={numeral(countryInfo.cases).format("0.0a")}
+            />
+            <InfoBox
+              onClick={(e) => setCasesType("recovered")}
+              title="Recovered"
+              active={casesType === "recovered"}
+              cases={prettyPrintStat(countryInfo.todayRecovered)}
+              total={numeral(countryInfo.recovered).format("0.0a")}
+            />
+            <InfoBox
+              onClick={(e) => setCasesType("deaths")}
+              title="Deaths"
+              isRed
+              active={casesType === "deaths"}
+              cases={prettyPrintStat(countryInfo.todayDeaths)}
+              total={numeral(countryInfo.deaths).format("0.0a")}
+            />
+          </div>
+          <Map
+            countries={mapCountries}
+            casesType={casesType}
+            center={mapCenter}
+            zoom={mapZoom}
+          />
         </div>
-        
-        <Tryhospital  hospital={currentHospitals}/>
-        <CustomPagination 
-          postsPerPage={postsPerPage}
-          totalPosts={hospital.length}
-          paginate={paginate}
-        />
-        
+        <Card className="app__right">
+          <CardContent>
+            <div className="app__information">
+              <h3>Live Cases by Country</h3>
+              <Table countries={tableData} />
+              <h3>Worldwide new {casesType}</h3>
+              <LineGraph casesType={casesType} />
+            </div>
+          </CardContent>
+        </Card>
       </div>
-     
+      <div className="body__hospital">
+        
+        <Hospital hospital={paginatedData} />
+        {/* <CustomPagination
+        postsPerPage={postsPerPage}
+        totalPosts={hospital.length}
+        paginate={paginate}
+      /> */}
+        <Row style={{ width: "100%" }} justify="center">
+          <Pagination
+            current={currentPage}
+            onChange={handlePaginationChange}
+            total={hospital.length}
+            pageSize={pageSize}
+            showSizeChanger={false}
+          />
+        </Row>
+      </div>
+
+
+
+
+
     </div>
-
-
   )
 
 }

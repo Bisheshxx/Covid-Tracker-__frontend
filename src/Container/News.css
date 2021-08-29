@@ -1,0 +1,9 @@
+.News__Card{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.News__Banner{
+    height: 400px;
+    background-color: black;
+}
