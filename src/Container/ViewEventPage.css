@@ -16,12 +16,9 @@
     padding-left: 200px;
     color: white;
 }
-.ViewEventPage__Card{
-    
+.ViewEventPage__Card{    
     display: flex;
-    align-items: center;
-    
-   
+    align-items: center;  
 }
 
 .View_cont{
@@ -36,26 +33,25 @@ box-shadow:0px 8px 10px  #b6b6b6;
     justify-content: center;
 }
 button{
-    position:relative;
-    width:1.2in;
+    margin-top: 10px;
+    width:75px;
     border:none;
     height:1cm;
     border-radius:20px;
     margin-right:.5cm;
     left:.4cm;
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 500;
     
 }
-
+.ViewEventPage__Buttons>{
+    display: flex;
+    justify-content: space-evenly;
+    }
 .donate{
     background-color: rgb(33, 179, 33);
-    margin-left: 330px;
-    position: absolute;
-    bottom: 13px;
-
 }
-@media(max-width:460px){
+@media(max-width:1080px){
     .ViewEventPage__banner{
         height: 500px;
         width: 100%;
@@ -75,4 +71,9 @@ button{
         color: white;
         font-size: 15px;
     }
+    .ViewEventPage__Buttons>{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        }
 }

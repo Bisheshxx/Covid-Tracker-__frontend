@@ -57,6 +57,7 @@ function Register() {
                     alert("User has been registered")
                 })
                 .catch((err) => {
+                    alert("Invalid")
                     console.log(err.response)
                 })
         }

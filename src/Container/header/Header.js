@@ -75,6 +75,9 @@ class Header extends Component {
                                             <li class="nav-item">
                                                 <a href="/faq" class="nav-link">FAQ's</a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a href="/News" class="nav-link">News</a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="navbar-content-area col">

@@ -1,19 +1,35 @@
 import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { Button, Card, Row } from 'react-bootstrap';
+import { Button, Card, CardColumns, Col, Form, Modal, Row } from 'react-bootstrap';
 import './ViewEventPage.css'
 
 function ViewEventPage() {
     const token = localStorage.getItem("token");
     const [event, setEvent] = useState([])
-    const [going, setGoing] = useState([])
+    const [going, setGoing] = useState()
+    const [show, setShow] = useState(false);
+    const [donation, setDonation] = useState({})
+    const [data, setData] = useState({
+        _id: "",
+        title: "",
+        description: "",
+        venue: "",
+        date: "",
+        email: "",
+        donation_amount: "",
+        Remarks: "",
+        going: "",
+        interested: ""
+    })
+    const { _id, Remarks, email, donation_amount } = data;
+    console.log(_id)
     useEffect(() => {
         axios.get('http://localhost:90/event/showall', {
             headers: { "authorization": `Bearer ${localStorage.getItem('token')}` }
         })
             .then((response) => {
-                console.log(response)
+                // console.log(response)
                 setEvent(
                     response.data.data
                 )
@@ -23,16 +39,43 @@ function ViewEventPage() {
                 console.log(err.response)
             })
     }, [])
-    // const goingButton =()=>{
-    //     axios.put('http://localhost:90/event/going', {
-    //         headers: { "authorization": `Bearer ${localStorage.getItem('token')}` }
-    //     })
-    //     then.Body((res)=>{
-    //         setGoing(
-    //             res.data.data+1
-    //         )
-    //     })
-    // }
+    const handleClose = () => setShow(false);
+    const handleShow = (item) => {
+        setShow(true)
+        setData(item)
+    };
+    const handleInput = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value });
+
+    }
+    const handleEventDonate = (e) => {
+        e.preventDefault();
+        axios.post('http://localhost:90/donate/amount', data)
+            .then((response) => {
+                console.log(response)
+                console.log(data)
+                alert("Thank you for your Donation")
+            })
+            .catch((err) => {
+                console.log(err)
+                console.log("err")
+            })
+    }
+    const handleResponse = (e, _id) => {
+        console.log(_id)
+        axios.post('http://localhost:90/event_toggle', { "decision": e.target.value, "event_id": _id },
+            {
+                headers: { "authorization": `Bearer ${localStorage.getItem('token')}` }
+            })
+            .then((response) => {
+                console.log((response))
+            })
+            .catch((err) => {
+                console.log(err)
+                console.log("err")
+            })
+    }
+
     return (
         <div className="ViewEventPage">
             <div className="ViewEventPage__banner">
@@ -42,29 +85,46 @@ function ViewEventPage() {
             <div className="ViewEventPage__body">
                 <Row xs={1} md={3} className="g-4" style={{ marginTop: "1in", marginBottom: "1in" }}>
                     {event.map((item) => (
-                        <div className='ViewEventPage__Card' style={{ width: '4in' }} >
-                            <Card className="View_cont" style={{ width: '8in', height: "3in", margin: '8px' }}>
+                        <div className='ViewEventPage__Card col-lg-4' style={{ width: '4in' }} >
+                            <Card className="View_cont" style={{ width: '9in', margin: '8px' }}>
                                 <Card.Body style={{ width: "3.3in" }}>
-                                    {/* {item.image} */}
+                                    <p>  {'http://localhost:90/' + item.eimage} </p>
+                                    <Card.Img style={{ width: '100px', objectFit: "contain" }} variant="top" src={'http://localhost:90/' + item.image} />
                                     <Card.Title>{item.title}</Card.Title>
 
                                     <Card.Subtitle className="mb-2 text-muted">Venue: {item.venue}   </Card.Subtitle>
                                     <Card.Subtitle>
                                         Description:
                                     </Card.Subtitle>
-                                    <br />
                                     <Card.Text>
                                         {item.description}
                                     </Card.Text>
 
                                     <Card.Text>
-                                        Venue:{item.venue}
-                                    </Card.Text><Card.Text>
                                         Date:{item.date}
                                     </Card.Text>
-                                    <button style={{ background: "transparent", border: "solid #248acc 1.5px", color: "#248acc" }}>Interested</button><button>Going</button>   {!token ? (<>
-                                    </>) : (<> <button className='donate'>Donate</button>
-                                    </>)}
+                                    <Card.Subtitle style={{fontSize:"9px"}} className="mb-2 text-muted">{item.going && item.going.length} people are going   </Card.Subtitle>
+                                    <Card.Subtitle style={{fontSize:"9px"}} className="mb-2 text-muted">{item.interested && item.interested.length} people are going   </Card.Subtitle>
+                                    <div className="ViewEvent__button">
+                                        <Card.Subtitle className="mb-2 text-muted">Venue: {item.venue}   </Card.Subtitle>
+                                        <Card.Text>
+
+                                            <CardColumns className="ViewEventPage__Buttons">
+                                            
+                                                <button value="interested" type="button" onClick={(e) => { handleResponse(e, item._id) }} style={{ background: "transparent", border: "solid #248acc 1.5px", color: "#248acc" }}> Interested</button>
+                                                
+                                                
+                                                <button value="going" type="button" >  Going</button>
+                                                {!token ? (<>
+                                                </>) : (<> <button className='donate' onClick={() => handleShow(item)}>Donate</button>
+                                                </>)}
+                                            </CardColumns>
+
+
+
+                                        </Card.Text>
+
+                                    </div>
 
                                 </Card.Body>
                             </Card>
@@ -72,6 +132,36 @@ function ViewEventPage() {
                     ))}
                 </Row>
             </div>
+            <Modal centered show={show} onHide={handleClose} animation={false}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Donation</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={handleEventDonate}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Event Id</Form.Label>
+                            <Form.Control readOnly type="text" name="_id" value={_id} onChange={handleInput} />
+
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control type="text" name="email" value={email} onChange={handleInput} />
+
+                            <Form.Label>Amount</Form.Label>
+                            <Form.Control type="number" name="donation_amount" value={donation_amount} onChange={handleInput} />
+
+                            <Form.Label>Remark</Form.Label>
+                            <Form.Control as="textarea" rows={3} type="text" name="Remarks" value={Remarks} onChange={handleInput} />
+
+
+                        </Form.Group>
+
+                        <Button type="submit" variant="primary" >
+                            Submit
+                        </Button>
+
+
+                    </Form>
+                </Modal.Body>
+            </Modal>
 
         </div>
 

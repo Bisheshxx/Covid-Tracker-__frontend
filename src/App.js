@@ -13,6 +13,8 @@ import Hospital from './Container/Hospital';
 import Faq from './Container/Faq';
 import ViewEventPage from './Container/ViewEventPage';
 import News from './Container/News';
+import Donation from './Container/Donation';
+import PwReset from './Container/PwReset';
 
 function App() {
   return (
@@ -25,6 +27,12 @@ function App() {
         </Route>
         <Route path='/register'>
           <Register></Register>
+        </Route>
+        <Route path='/resetpassword/changepass' exact >
+          <PwReset/>
+        </Route>
+        <Route path='/donations'>
+          <Donation/>
         </Route>
         <Route path='/News'>
           <News/>

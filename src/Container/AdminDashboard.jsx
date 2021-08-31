@@ -7,6 +7,7 @@ import Userlist from '../Container/Userlist'
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Nav, Item, Tab, Table } from 'react-bootstrap'
 import EventList from './EventList';
+import Donation from './Donation';
 
 function AdminDashboard() {
     const token = localStorage.getItem("token");    
@@ -37,7 +38,7 @@ function AdminDashboard() {
                                 <EventList></EventList>
                             </Tab.Pane>
                             <Tab.Pane eventKey="third">
-                                Donations
+                                <Donation/>
                             </Tab.Pane>
                     </Tab.Content>
                 </Col>

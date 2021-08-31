@@ -17,8 +17,7 @@ function ResetPassword() {
         })
     }
 
-    const getCode = (e)=>{
-        
+    const getCode = (e)=>{        
         e.preventDefault();
         axios.post("http://localhost:90/forgotPassword/askEmail",email)
         .then((response)=>{
@@ -45,7 +44,7 @@ function ResetPassword() {
         var myPinCode = parseInt(pinCode);
         if(pinCode == myPinCode)
         {
-            window.location.href = "/"
+            window.location.href = "/resetpassword/changepass"
         }
         
     }

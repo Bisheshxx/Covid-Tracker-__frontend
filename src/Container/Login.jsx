@@ -31,7 +31,8 @@ function Login() {
             axios.post('http://localhost:90/account/login', login)
             .then((response) => {                
                 var token = localStorage.setItem('token', response.data.token)
-                if(token !== null){
+                if(response.data.token!== null){
+
                     window.location.href = "/"
                     alert("Logged In!")
                 }
