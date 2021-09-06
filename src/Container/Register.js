@@ -13,37 +13,70 @@ function Register() {
         conpassword: "",
         usertype: ""
     })
-    const [errors, setErrors] = useState({
-        chkFullname: "",
-        chkEmail: "",
-        chkPassword: "",
-        chkConpassword: "",
-        chkUsertype: "",
-        chkPassword: ""
-    })
+    // const [errors, setErrors] = useState({})
+    const [pwError, setPwError] = useState("")
+    const [fnError, setFnError] = useState("")
+    const [emailError, setEmailError] = useState("")
+    const [usertypeError, setUsertypeError] = useState("")
+    const [conPwError, setConPwError] = useState("")
+    
     const handleInput = (e) => {
         const name = e.target.name;
         const value = e.target.value
         setsignup({ ...signup, [name]: value })
 
     }
+    
     const signupbtn = (e) => {
-        if (!signup.fullname) {
-            setErrors({ ...errors, chkFullname: "This Field is required" })
+        e.preventDefault()
+        if (!signup.fullname) { 
+            setFnError( "This Field is required" )
         }
-        else if (!signup.email.trim()) {
-            setErrors({ ...errors, chkEmail: "This Field is required" })
+        else if(signup.fullname.includes("1") ||  signup.fullname.includes("2") ||  signup.fullname.includes("3") || signup.fullname.includes("4") || 
+        signup.fullname.includes("5") ||  signup.fullname.includes("6") ||  signup.fullname.includes("7") ||  signup.fullname.includes("8") || signup.fullname.includes("9") || signup.fullname.includes("0")  ){
+            setFnError("Name cannot contain numbers!!")
         }
-        else if (!signup.email.trim()) {
-            setErrors({ ...errors, chkPassword: "This Field is required" })
+        else{
+            setFnError("")
         }
-        else if (!signup.email.trim()) {
-            setErrors({ ...errors, chkConpassword: "This Field is required" })
+        if (!signup.email.trim("@")) {
+            setEmailError( "This Field is required" )
         }
-        else if (signup.password !== signup.conpassword) {
-            setErrors({ ...errors, chkConpassword: "Both need to be similar" })
+        else if(!signup.email.includes("@")){
+            setEmailError("invalid Email")
         }
-        else {
+        else{
+            setEmailError("")
+        }
+        if (!signup.password) {
+            setPwError("This Field is required" )
+        }
+        else if (signup.password<6) {
+            setPwError("Password must me longer than 6 characters" )
+        }
+        else{
+            setPwError("")
+        }
+        if(!signup.usertype){
+            setUsertypeError("Please Select User type!!")
+        }
+        else{
+            setUsertypeError("")
+        }
+        if(!signup.conpassword){
+            setConPwError("This Field Cannot be Empty")
+        }
+        if(signup.password !== signup.conpassword){
+            setConPwError("Doesn't match with password!")
+        }
+        else{
+            setConPwError("")
+        }
+       
+        console.log(fnError ,pwError , emailError )
+        console.log(!fnError && !pwError && !emailError)
+        
+        if(!fnError && !pwError && !emailError){
             const userdata = {
                 fullname: signup.fullname,
                 email: signup.email,
@@ -57,10 +90,11 @@ function Register() {
                     alert("User has been registered")
                 })
                 .catch((err) => {
-                    alert("Invalid")
+                    alert("invalid")
                     console.log(err.response)
                 })
         }
+        
 
     }
 
@@ -74,7 +108,7 @@ function Register() {
                         <div>
                             <input type="text" className='register__input' value={signup.fullname} onChange={handleInput} name="fullname" autoComplete="off"></input>
                             <p style={{ fontSize: '10px', color: 'red' }}>
-                                {errors && errors.chkFullname ? errors.chkEmail : null}
+                                {fnError}
                             </p>
                         </div>
 
@@ -85,7 +119,7 @@ function Register() {
                         <div>
                             <input className='register__input' type="text" value={signup.email} onChange={handleInput} name="email" autoComplete="off"></input>
                             <p style={{ fontSize: '10px', color: 'red' }}>
-                                {errors && errors.chkEmail ? errors.chkEmail : null}
+                                {emailError}
                             </p>
                         </div>
 
@@ -97,7 +131,7 @@ function Register() {
                         <div>
                             <input className='register__pw' type="password" value={signup.password} onChange={handleInput} name="password" autoComplete="off"></input>
                             <p style={{ fontSize: '10px', color: 'red' }}>
-                                {errors && errors.chkPassword ? errors.chkEmail : null}
+                                {pwError}
                             </p>
                         </div>
 
@@ -108,17 +142,21 @@ function Register() {
                         <div>
                             <input className='register__pw' type="password" value={signup.conpassword} onChange={handleInput} name="conpassword" autoComplete="off"></input>
                             <p style={{ fontSize: '10px', color: 'red' }}>
-                                {errors && errors.chkConpassword ? errors.chkEmail : null}
+                                {conPwError}
                             </p>
                         </div>
 
-                        <select className='custom-select' value={signup.usertype}>
-                            <option value="Visitor">Visitor</option>
+                        <select className='custom-select' value={signup.usertype} onChange={handleInput} name="usertype">
+                            <option> </option>
+                            <option value="User">User</option>
                             <option value="Event Manager">Event Manager</option>
                         </select>
-                        <Link to="/login">
+                        <p style={{ fontSize: '10px', color: 'red' }}>
+                                {usertypeError}
+                            </p>
+                        
                             <button className='login__btn' onClick={signupbtn} style={{ marginTop: '10px', color: 'white', backgroundColor: '#2b96d5', marginRight: '20%', marginLeft: '20%' }}>Sign-UP</button>
-                        </Link>
+                        
 
                     </div>
 

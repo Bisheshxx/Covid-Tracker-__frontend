@@ -4,8 +4,8 @@ import { Container, Row, Col,Form, Table, Modal, Button } from 'react-bootstrap'
 import axios from 'axios'
 import './stylelogin.css'
 import { Link } from 'react-router-dom'
-import { validate } from '@babel/types'
-
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 function Login() {
     const token= localStorage.getItem("token");
     
@@ -22,28 +22,45 @@ function Login() {
         const value = e.target.value;
         setlogin({ ...login, [name]: value })
     }
-    const loginBtn = (e) => {
-        e.preventDefault();
-
+    const loginBtn = (e) => {   
+        e.preventDefault(); 
         if(!login.email.includes("@")){
             setErrors({...errors,chkEmail:"Invalid email!"});
-        }else{
+        }
+        else{
             axios.post('http://localhost:90/account/login', login)
             .then((response) => {                
-                var token = localStorage.setItem('token', response.data.token)
-                if(response.data.token!== null){
-
+                  
+                
+                if(response.data.token !== undefined){                    
                     window.location.href = "/"
-                    alert("Logged In!")
+                    // alert("Logged In!")
+                    var token = localStorage.setItem('token', response.data.token)
+                    toast.success('User Logged In!', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                 }
                 else{
                     console.log(response)
-                    alert('Incorrect Password or Username')
+                    toast.error('Incorrect Credential!!', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                 }
-                
             })
             .catch((err) => {
-                alert("Invalid Credential!")
+                
                 console.log(err.response)
             })
         }
@@ -98,8 +115,8 @@ function Login() {
                 </form> 
 
             </div>
-            
-        </div>
+            <ToastContainer/>
+            </div>
     )
 }
 export default Login
