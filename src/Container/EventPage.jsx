@@ -1,4 +1,5 @@
 import axios from 'axios'
+import moment from 'moment'
 import React from 'react'
 import { useEffect, useState, fileHandler } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
@@ -6,27 +7,36 @@ import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import './styleEvent.css'
 function EventPage() {
-    const token= localStorage.getItem("token");
+    const token = localStorage.getItem("token");
+    const [dateError, setDateError] = useState("");
     const [event, setevent] = useState({
         title: "",
         venue: "",
-        desc:"",
-        date:"",
-        image:""
+        desc: "",
+        date: "",
+        image: ""
     })
     const handleInput = (e) => {
-        const {name, value}= e.target
+        const { name, value } = e.target
         setevent({ ...event, [name]: value })
     }
-    const fileHandler = (e) =>{
-        
+    const fileHandler = (e) => {
+
         setevent({
             ...event,
-            image : e.target.files[0]
+            image: e.target.files[0]
         })
+
     }
-    const submitBtn = (e) =>{
+    const submitBtn = (e) => {
         e.preventDefault();
+        var now = moment().format("MMMM DD, YYYY")
+        if (moment(event.date).format("MMMM DD, YYYY") < now) {
+            setDateError("date is less than")
+        }
+        else {
+            console.log("")
+        }
         const eventData = new FormData()
         eventData.append('title', event.title)
         eventData.append('venu', event.venue)
@@ -34,23 +44,23 @@ function EventPage() {
         eventData.append('date', event.date)
         eventData.append('image', event.image)
         console.log(event.image);
-        axios.post('http://localhost:90/event/insert',eventData)
-        .then((response)=>{
-            console.log(response)
-            alert(response.data.message)
-        })
-        .catch((err)=>{
-            console.log(err.response)
-        })
-        
-        
+        axios.post('http://localhost:90/event/insert', eventData)
+            .then((response) => {
+                console.log(response)
+                alert(response.data.message)
+            })
+            .catch((err) => {
+                console.log(err.response)
+            })
+
+
     }
     return (
         <div className='event__bg'>
             <div className='event__container'>
                 <form>
                     <div classname='event__form'>
-                        <h1 style={{textAlign:'center', color:'grey'}}>Event Details Form</h1>
+                        <h1 style={{ textAlign: 'center', color: 'grey' }}>Event Details Form</h1>
                         <Container>
                             <Row>
                                 <Col>
@@ -89,12 +99,15 @@ function EventPage() {
                                             </div>
                                             <div>
                                                 <input type="datetime-local" style={{ border: '2px solid #2b96d5', width: '100%', borderRadius: '5px' }} value={event.date} onChange={handleInput} name="date" autoComplete="off" data-test="email"></input>
+                                                <p style={{ fontSize: '10px', color: 'red' }}>
+                                                    {dateError}
+                                                </p>
                                             </div></Col>
                                     </Row>
                                     <Row style={{ paddingTop: '20px', display: 'flex', justifyContent: 'center' }}>
                                         <Col>
                                             Click here to Upload An Image<br></br>
-                                            <input type='file'  onChange={(e)=>{fileHandler(e)}} name='image'></input>
+                                            <input type='file' onChange={(e) => { fileHandler(e) }} name='image'></input>
                                         </Col>
                                     </Row>
                                     <Row style={{ paddingTop: '20px', display: 'flex', justifyContent: 'center' }}>

@@ -147,14 +147,13 @@ function Register() {
                         </div>
 
                         <select className='custom-select' value={signup.usertype} onChange={handleInput} name="usertype">
-                            <option> </option>
+                            <option value="">Select User type</option>
                             <option value="User">User</option>
                             <option value="Event Manager">Event Manager</option>
                         </select>
                         <p style={{ fontSize: '10px', color: 'red' }}>
                                 {usertypeError}
-                            </p>
-                        
+                            </p>                        
                             <button className='login__btn' onClick={signupbtn} style={{ marginTop: '10px', color: 'white', backgroundColor: '#2b96d5', marginRight: '20%', marginLeft: '20%' }}>Sign-UP</button>
                         
 

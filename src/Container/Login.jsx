@@ -100,12 +100,12 @@ function Login() {
                     <Container>
                         <Row style={{ paddingTop: '20px', display:'flex', justifyContent:'center'}}>
                             <Col xs={24} md={6} align='middle' style={{ marginTop:'5px',paddingRight:'auto',paddingLeft:'auto'}} >
-                                <button onClick={loginBtn} style={{ width:'80px', borderRadius:'5px',color:'white' }} data-test="login-btn">Login</button>
+                                <button onClick={loginBtn} style={{ width:'80px', borderRadius:'5px',color:'white', backgroundColor:'rgb(43, 150, 213)' }} data-test="login-btn">Login</button>
 
                             </Col>
                             <Col xs={24} md={6} align='middle'  style={{marginTop:'5px',paddingRight:'auto',paddingLeft:'auto'}}>
                                 <Link to='/register'>
-                                <button style={{ width:'80px', borderRadius:'5px',color:'white'}} data-test="btn-signup">Sign-UP</button>
+                                <button style={{ width:'80px', borderRadius:'5px',color:'white', backgroundColor:'rgb(43, 150, 213)'}} data-test="btn-signup">Sign-UP</button>
                                 </Link>
                                 
                             </Col>
