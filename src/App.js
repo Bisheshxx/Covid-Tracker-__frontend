@@ -15,7 +15,7 @@ import ViewEventPage from './Container/ViewEventPage';
 import News from './Container/News';
 import Donation from './Container/Donation';
 import PwReset from './Container/PwReset';
-
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <BrowserRouter>
@@ -28,7 +28,7 @@ function App() {
         <Route path='/register'>
           <Register></Register>
         </Route>
-        <Route path='/resetpassword/changepass' exact >
+        <Route path='/changepass' exact >
           <PwReset/>
         </Route>
         <Route path='/donations'>

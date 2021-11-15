@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './resetpassword.css'
 import { Form,Button,Modal } from 'react-bootstrap'
 import axios from 'axios';
+import logo from "./logo.png"
 function ResetPassword() {
     const [show, setShow] = useState(false);
     let [email,setEmail] = useState({
@@ -44,7 +45,7 @@ function ResetPassword() {
         var myPinCode = parseInt(pinCode);
         if(pinCode == myPinCode)
         {
-            window.location.href = "/resetpassword/changepass"
+            window.location.href = "/changepass"
         }
         
     }
@@ -52,8 +53,9 @@ function ResetPassword() {
     return (
         <div className='reset__background'>
             <div className="reset__password">
+                <logo/>
                 <a class="navbar-brand" href="index.html"><img
-                    src="https://scontent.fktm8-1.fna.fbcdn.net/v/t39.30808-6/216791868_5766928153379044_7873052256259565595_n.png?_nc_cat=110&ccb=1-4&_nc_sid=730e14&_nc_ohc=4Tg60pfiLBwAX8Z3tD8&_nc_ht=scontent.fktm8-1.fna&oh=077b2c5292ded1daf862f4584fa13085&oe=6119F53A" alt="logo" /></a>
+                    src={logo} alt="logo" /></a>
                 <Form onSubmit={getCode}>
                     <Form.Label htmlFor="inlineFormInput" visuallyHidden>
                     Enter your user account's verified email address and we will send you a password reset link.

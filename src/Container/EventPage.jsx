@@ -14,39 +14,48 @@ function EventPage() {
         venue: "",
         desc: "",
         date: "",
-        image: ""
+        eimage: ""
     })
     const handleInput = (e) => {
         const { name, value } = e.target
         setevent({ ...event, [name]: value })
     }
     const fileHandler = (e) => {
-
         setevent({
             ...event,
-            image: e.target.files[0]
+            eimage: e.target.files[0]
         })
 
     }
-    const submitBtn = (e) => {
+    const validate = (e)=>{
         e.preventDefault();
         var now = moment().format("MMMM DD, YYYY")
         if (moment(event.date).format("MMMM DD, YYYY") < now) {
-            setDateError("date is less than")
+            setDateError("date cannot be of the past")
+        }
+        else {
+            submitBtn()
+        }
+    }
+    const submitBtn = (e) => {
+        
+        var now = moment().format("MMMM DD, YYYY")
+        if (moment(event.date).format("MMMM DD, YYYY") < now) {
+            setDateError("date cannot be of the past")
         }
         else {
             console.log("")
         }
         const eventData = new FormData()
         eventData.append('title', event.title)
-        eventData.append('venu', event.venue)
+        eventData.append('venue', event.venue)
         eventData.append('description', event.desc)
         eventData.append('date', event.date)
-        eventData.append('image', event.image)
-        console.log(event.image);
+        eventData.append('eimage', event.eimage)
         axios.post('http://localhost:90/event/insert', eventData)
             .then((response) => {
                 console.log(response)
+                console.log(event.eimage);
                 alert(response.data.message)
             })
             .catch((err) => {
@@ -68,7 +77,7 @@ function EventPage() {
                                         <b><label className='login__label'>Title</label></b>
                                     </div>
                                     <div>
-                                        <input type="text" value={event.title} onChange={handleInput} name="title" autoComplete="off" data-test="email"></input>
+                                        <input type="text" value={event.title} style={{ border: '2px solid #2b96d5', width: '100%', borderRadius: '5px' }} onChange={handleInput} name="title" autoComplete="off" data-test="email"></input>
                                     </div>
                                 </Col>
                                 <Col>
@@ -76,7 +85,7 @@ function EventPage() {
                                         <b><label className='login__label'>Venue</label></b>
                                     </div>
                                     <div>
-                                        <input type="text" value={event.venue} onChange={handleInput} name="venue" autoComplete="off" data-test="email"></input>
+                                        <input type="text" style={{ border: '2px solid #2b96d5', width: '100%', borderRadius: '5px' }} value={event.venue} onChange={handleInput} name="venue" autoComplete="off" data-test="email"></input>
                                     </div>
                                 </Col>
 
@@ -107,12 +116,12 @@ function EventPage() {
                                     <Row style={{ paddingTop: '20px', display: 'flex', justifyContent: 'center' }}>
                                         <Col>
                                             Click here to Upload An Image<br></br>
-                                            <input type='file' onChange={(e) => { fileHandler(e) }} name='image'></input>
+                                            <input type='file' onChange={(e) => { fileHandler(e) }} name='eimage'></input>
                                         </Col>
                                     </Row>
                                     <Row style={{ paddingTop: '20px', display: 'flex', justifyContent: 'center' }}>
                                         <Col xs={24} md={6} align='middle' >
-                                            <button onClick={submitBtn} style={{ width: '150px', borderRadius: '5px' }} data-test="login-btn">Submit</button>
+                                            <button onClick={validate} style={{ width: '150px', borderRadius: '5px' }} data-test="login-btn">Submit</button>
 
                                         </Col>
                                         <Col xs={24} md={6} align='middle' >

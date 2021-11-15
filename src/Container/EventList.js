@@ -2,6 +2,8 @@ import { Form, Table, Modal, Button } from 'react-bootstrap'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { deleteEvent } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 
 function EventList() {
@@ -60,9 +62,10 @@ function EventList() {
     const deleteEvent = (event_id) => {
         axios.delete(`http://localhost:90/event/delete/${event_id}`)
             .then((response) => {
+                console.log(event_id)
                 alert(response.data && response.data.message);
                 console.log(response.data && response.data.message);
-                window.location.reload();
+                // window.location.reload();
                 // alert(response.data);
 
             })
@@ -86,7 +89,6 @@ function EventList() {
                         <th>description</th>
                         <th>venue</th>
                         <th>date</th>
-                        <th>Usertype</th>
                         <th> </th>
                     </tr>
                 </thead>
@@ -97,7 +99,6 @@ function EventList() {
                             <td>{item.title}</td>
                             <td>{item.description}</td>
                             <td>{item.venue}</td>
-                            <td>{item.date}</td>
                             <td>{item.date}</td>
                             <td><button style={{ width: "100px", borderRadius:'9px' }} size="sm" data-toggle="modal" onClick={() => handleShow(item)} >Update</button>
                                 <button style={{ width: "100px", borderRadius:'9px' }} size="sm" onClick={() => { deleteEvent(item._id) }}>Delete</button></td>
@@ -136,6 +137,7 @@ function EventList() {
                     </Form>
                 </Modal.Body>
             </Modal>
+            <ToastContainer/>
         </div>
     )
 

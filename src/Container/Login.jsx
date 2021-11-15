@@ -36,7 +36,8 @@ function Login() {
                     window.location.href = "/"
                     // alert("Logged In!")
                     var token = localStorage.setItem('token', response.data.token)
-                    toast.success('User Logged In!', {
+                    var usertype = localStorage.setItem('usertype',response.data.userType)
+                    toast.success('Logged in!', {
                         position: "top-center",
                         autoClose: 5000,
                         hideProgressBar: false,

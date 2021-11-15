@@ -4,12 +4,11 @@ import logo from "./logo.png"
 
 class Header extends Component {
     logout = () => log(
-        localStorage.removeItem('token'),
-        localStorage.removeItem('id'),
+       localStorage.clear(),
         window.location.href = '/'
     )
     render() {
-      
+      console.log("test",localStorage.getItem('usertype')==="Admin" );
         if (localStorage.getItem('token')) {
             var menu =
                 <div class="bloc l-bloc none" id="bloc-0">
@@ -42,9 +41,14 @@ class Header extends Component {
                                             <div class="col">
                                                 <a onClick={this.logout} href='/login' class="btn btn-lg btn-blue-green">logout</a>
                                             </div>
-                                            <div class="col">
+                                            {
+                                                localStorage.getItem('usertype') !== "Admin" ?(<div class="col">
                                                 <a href="/events" class="btn btn-lg btn-green-ryb">Donate</a>
-                                            </div>
+                                            </div>):(<div class="col">
+                                                <a href="/adminpannel" class="btn btn-lg btn-green-ryb"> Panel</a>
+                                            </div>)
+                                            }
+                                            
                                         </div>
                                     </div>
                                 </nav>

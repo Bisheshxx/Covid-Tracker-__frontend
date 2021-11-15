@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { Button, Card, CardColumns, Col, Form, Modal, Row } from 'react-bootstrap';
+import { Button, Card, CardColumns, Col, Container, Form, Modal, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import './ViewEventPage.css'
 
 function ViewEventPage() {
@@ -62,7 +63,7 @@ function ViewEventPage() {
             })
     }
     const handleResponse = (e, _id) => {
-        console.log(_id)
+        window.location.reload();
         axios.post('http://localhost:90/event_toggle', { "decision": e.target.value, "event_id": _id },
             {
                 headers: { "authorization": `Bearer ${localStorage.getItem('token')}` }
@@ -81,18 +82,21 @@ function ViewEventPage() {
             <div className="ViewEventPage__banner">
                 <h1><b>Events</b></h1>
                 <p>Following are the ongoing events related to COVID-19 happening in Nepal</p>
+                {localStorage.getItem('usertype') == "Event_manager" ? (<><Link style={{marginLeft: "200px", color:"white"}} to="/createevent">Want to create an event? Click here</Link>
+                </>) : (<> 
+                </>)}
             </div>
+            <Container>
             <div className="ViewEventPage__body">
                 <Row xs={1} md={3} className="g-4" style={{ marginTop: "1in", marginBottom: "1in" }}>
                     {event.map((item) => (
                         <div className='ViewEventPage__Card col-lg-4' style={{ width: '4in' }} >
-                            <Card className="View_cont" style={{ width: '9in', margin: '8px' }}>
+                            <Card className="View_cont" style={{marginTop:"10px"}}>
                                 <Card.Body style={{ width: "3.3in" }}>
-                                    <p>  {'http://localhost:90/' + item.eimage} </p>
-                                    <Card.Img style={{ width: '100px', objectFit: "contain" }} variant="top" src={'http://localhost:90/' + item.image} />
+                                    <Card.Img style={{ width: '200px', objectFit: "contain", marginLeft:"10%", marginRight:"110%" }} variant="top" src={'http://localhost:90/' + item.eimage} />
                                     <Card.Title>{item.title}</Card.Title>
 
-                                    <Card.Subtitle className="mb-2 text-muted">Venue: {item.venue}   </Card.Subtitle>
+                                    <Card.Subtitle className="mb-2 text-muted">venue: {item.venue}   </Card.Subtitle>
                                     <Card.Subtitle>
                                         Description:
                                     </Card.Subtitle>
@@ -103,20 +107,16 @@ function ViewEventPage() {
                                     <Card.Text>
                                         Date:{item.date}
                                     </Card.Text>
-                                    <Card.Subtitle style={{fontSize:"9px"}} className="mb-2 text-muted">{item.going && item.going.length} people are going   </Card.Subtitle>
-                                    <Card.Subtitle style={{fontSize:"9px"}} className="mb-2 text-muted">{item.interested && item.interested.length} people are going   </Card.Subtitle>
+                                    <Card.Subtitle style={{ fontSize: "9px" }} className="mb-2 text-muted">{item.going && item.going.length} people are going   </Card.Subtitle>
+                                    <Card.Subtitle style={{ fontSize: "9px" }} className="mb-2 text-muted">{item.interested && item.interested.length} people are interested   </Card.Subtitle>
                                     <div className="ViewEvent__button">
-                                        <Card.Subtitle className="mb-2 text-muted">Venue: {item.venue}   </Card.Subtitle>
                                         <Card.Text>
 
                                             <CardColumns className="ViewEventPage__Buttons">
-                                            
-                                                <button value="interested" type="button" onClick={(e) => { handleResponse(e, item._id) }} style={{ background: "transparent", border: "solid #248acc 1.5px", color: "#248acc" }}> Interested</button>
                                                 
-                                                
-                                                <button value="going" type="button" >  Going</button>
+                    
                                                 {!token ? (<>
-                                                </>) : (<> <button className='donate' onClick={() => handleShow(item)}>Donate</button>
+                                                </>) : (<><button value="going" type="button" >  Going</button> <button value="interested" type="button" onClick={(e) => { handleResponse(e, item._id) }} style={{ background: "transparent", border: "solid #248acc 1.5px", color: "#248acc" }}> Interested</button> <button className='donate' onClick={() => handleShow(item)}>Donate</button>
                                                 </>)}
                                             </CardColumns>
 
@@ -132,6 +132,7 @@ function ViewEventPage() {
                     ))}
                 </Row>
             </div>
+            </Container>
             <Modal centered show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>Donation</Modal.Title>

@@ -4,6 +4,8 @@ import { Component, state, submitUser, changeHandler } from 'react'
 import axios from 'axios'
 import Login from './Login'
 import { Link } from "react-router-dom"
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
     const [signup, setsignup] = useState({
@@ -11,7 +13,7 @@ function Register() {
         email: "",
         password: "",
         conpassword: "",
-        usertype: ""
+        userType: ""
     })
     // const [errors, setErrors] = useState({})
     const [pwError, setPwError] = useState("")
@@ -24,7 +26,6 @@ function Register() {
         const name = e.target.name;
         const value = e.target.value
         setsignup({ ...signup, [name]: value })
-
     }
     
     const signupbtn = (e) => {
@@ -72,25 +73,38 @@ function Register() {
         else{
             setConPwError("")
         }
-       
-        console.log(fnError ,pwError , emailError )
-        console.log(!fnError && !pwError && !emailError)
         
-        if(!fnError && !pwError && !emailError){
+        if(!fnError && !pwError && !emailError && !usertypeError){
             const userdata = {
                 fullname: signup.fullname,
                 email: signup.email,
                 password: signup.password,
-                usertype: signup.usertype
+                userType: signup.usertype
             }
             console.log(userdata)
             axios.post('http://localhost:90/insert/user', userdata)
                 .then((response) => {
                     console.log(response);
-                    alert("User has been registered")
+                    toast.success('User has been registered!', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                 })
                 .catch((err) => {
-                    alert("invalid")
+                    toast.error('invalid data!', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                     console.log(err.response)
                 })
         }
@@ -149,7 +163,7 @@ function Register() {
                         <select className='custom-select' value={signup.usertype} onChange={handleInput} name="usertype">
                             <option value="">Select User type</option>
                             <option value="User">User</option>
-                            <option value="Event Manager">Event Manager</option>
+                            <option value="Event_manager">Event Manager</option>
                         </select>
                         <p style={{ fontSize: '10px', color: 'red' }}>
                                 {usertypeError}
@@ -165,6 +179,7 @@ function Register() {
                 </form>
 
             </div>
+            <ToastContainer/>
         </div>
     )
 }

@@ -85,7 +85,7 @@ function Userlist() {
                                 <td>{item.userType}</td>
                                 <td>
                                     <button style={{ width: "100px" }} size="sm" data-toggle="modal" onClick={() => handleShow(item)} >Update</button>
-                                    <button style={{ borderRadius:'8px', width: "100px" }} size="sm" data-toggle="modal" onClick={() => { deleteEvent(item._id) }}onClick={() => { deleteEvent(item._id) }} >Delete</button>
+                                    <button style={{ borderRadius:'8px', width: "100px" }} size="sm" data-toggle="modal" onClick={() => { deleteEvent(item._id) }}>Delete</button>
                                 </td>
                             </tr>
                         </tbody>
